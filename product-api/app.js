@@ -1,11 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('node:path');
 const prisma = require('./config/prisma');
 const productRoutes = require('./routes/productRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/products', productRoutes);
+// Build React dilayani dari server yang sama; endpoint API tetap /products.
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
 app.use((req, res) => res.status(404).json({ message: 'Endpoint tidak ditemukan' }));
 app.use((err, req, res, next) => {
   if (err.type === 'entity.parse.failed') {

@@ -7,7 +7,7 @@ async function main() {
       where: { id: product.id }, update: {}, create: product,
     });
   }
-  console.log('Seed selesai: data awal Buku dan Pulpen tersedia.');
+  console.log('Seed selesai: data awal produk tersedia.');
 }
 main().catch((error) => {
   console.error(error);

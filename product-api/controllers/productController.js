@@ -6,9 +6,9 @@ const parseId = (value) => typeof value === 'string' && /^[1-9]\d*$/.test(value)
   && validId(Number(value)) ? Number(value) : null;
 const validProduct = (body) => body && !Array.isArray(body)
   && typeof body.name === 'string' && body.name.trim() !== ''
-  && typeof body.price === 'number' && Number.isFinite(body.price) && body.price >= 0;
+  && typeof body.price === 'number' && Number.isFinite(body.price) && body.price > 0;
 const invalidProduct = (res) => res.status(400).json({
-  message: 'name (string tidak kosong) dan price (number >= 0) wajib diisi',
+  message: 'name (string tidak kosong) dan price (number > 0) wajib diisi',
 });
 
 // GET /products: mengambil seluruh data dari database.

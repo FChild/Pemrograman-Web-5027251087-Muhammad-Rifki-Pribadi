@@ -1,5 +1,5 @@
 {
-  "executedAt": "2026-11-14T12:13:33.970Z",
+  "executedAt": "2026-11-14T12:54:30.856Z",
   "node": "v24.22.1",
   "prisma": "6.19.0",
   "total": 30,
@@ -21,6 +21,21 @@
           "id": 2,
           "name": "Pulpen",
           "price": 5000
+        },
+        {
+          "id": 3,
+          "name": "Spidol",
+          "price": 8000
+        },
+        {
+          "id": 4,
+          "name": "Penggaris",
+          "price": 6000
+        },
+        {
+          "id": 5,
+          "name": "Penghapus",
+          "price": 3000
         }
       ],
       "passed": true
@@ -68,7 +83,7 @@
       "expectedStatus": 201,
       "actualStatus": 201,
       "response": {
-        "id": 3,
+        "id": 6,
         "name": "Penghapus",
         "price": 2000
       },
@@ -77,11 +92,11 @@
     {
       "name": "06 - GET produk baru",
       "method": "GET",
-      "path": "/products/3",
+      "path": "/products/6",
       "expectedStatus": 200,
       "actualStatus": 200,
       "response": {
-        "id": 3,
+        "id": 6,
         "name": "Penghapus",
         "price": 2000
       },
@@ -95,7 +110,7 @@
       "expectedStatus": 400,
       "actualStatus": 400,
       "response": {
-        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
@@ -107,7 +122,7 @@
       "expectedStatus": 400,
       "actualStatus": 400,
       "response": {
-        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
@@ -119,7 +134,7 @@
       "expectedStatus": 400,
       "actualStatus": 400,
       "response": {
-        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
@@ -131,7 +146,7 @@
       "expectedStatus": 400,
       "actualStatus": 400,
       "response": {
-        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
@@ -151,11 +166,11 @@
       "name": "12 - PUT produk berhasil",
       "method": "PUT",
       "path": "/products",
-      "requestBody": "{\"id\":3,\"name\":\"Penghapus Premium\",\"price\":3500}",
+      "requestBody": "{\"id\":6,\"name\":\"Penghapus Premium\",\"price\":3500}",
       "expectedStatus": 200,
       "actualStatus": 200,
       "response": {
-        "id": 3,
+        "id": 6,
         "name": "Penghapus Premium",
         "price": 3500
       },
@@ -172,11 +187,11 @@
     {
       "name": "13 - GET hasil PUT",
       "method": "GET",
-      "path": "/products/3",
+      "path": "/products/6",
       "expectedStatus": 200,
       "actualStatus": 200,
       "response": {
-        "id": 3,
+        "id": 6,
         "name": "Penghapus Premium",
         "price": 3500
       },
@@ -210,11 +225,11 @@
       "name": "16 - PUT nama kosong",
       "method": "PUT",
       "path": "/products",
-      "requestBody": "{\"id\":3,\"name\":\"\",\"price\":1000}",
+      "requestBody": "{\"id\":6,\"name\":\"\",\"price\":1000}",
       "expectedStatus": 400,
       "actualStatus": 400,
       "response": {
-        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
@@ -222,11 +237,11 @@
       "name": "17 - PUT harga negatif",
       "method": "PUT",
       "path": "/products",
-      "requestBody": "{\"id\":3,\"name\":\"Baru\",\"price\":-1}",
+      "requestBody": "{\"id\":6,\"name\":\"Baru\",\"price\":-1}",
       "expectedStatus": 400,
       "actualStatus": 400,
       "response": {
-        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
@@ -234,11 +249,11 @@
       "name": "18 - PUT field harga kurang",
       "method": "PUT",
       "path": "/products",
-      "requestBody": "{\"id\":3,\"name\":\"Baru\"}",
+      "requestBody": "{\"id\":6,\"name\":\"Baru\"}",
       "expectedStatus": 400,
       "actualStatus": 400,
       "response": {
-        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
@@ -279,13 +294,13 @@
     {
       "name": "22 - DELETE produk berhasil",
       "method": "DELETE",
-      "path": "/products/3",
+      "path": "/products/6",
       "expectedStatus": 200,
       "actualStatus": 200,
       "response": {
         "message": "Produk berhasil dihapus",
         "data": {
-          "id": 3,
+          "id": 6,
           "name": "Penghapus Premium",
           "price": 3500
         }
@@ -295,7 +310,7 @@
     {
       "name": "23 - GET produk setelah dihapus",
       "method": "GET",
-      "path": "/products/3",
+      "path": "/products/6",
       "expectedStatus": 404,
       "actualStatus": 404,
       "response": {
@@ -306,7 +321,7 @@
     {
       "name": "24 - DELETE ulang produk",
       "method": "DELETE",
-      "path": "/products/3",
+      "path": "/products/6",
       "expectedStatus": 404,
       "actualStatus": 404,
       "response": {
@@ -315,32 +330,26 @@
       "passed": true
     },
     {
-      "name": "25 - POST harga nol valid",
+      "name": "25 - POST harga nol ditolak",
       "method": "POST",
       "path": "/products",
       "requestBody": "{\"name\":\"Sampel Gratis\",\"price\":0}",
-      "expectedStatus": 201,
-      "actualStatus": 201,
+      "expectedStatus": 400,
+      "actualStatus": 400,
       "response": {
-        "id": 4,
-        "name": "Sampel Gratis",
-        "price": 0
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
     {
-      "name": "26 - DELETE produk harga nol",
-      "method": "DELETE",
-      "path": "/products/4",
-      "expectedStatus": 200,
-      "actualStatus": 200,
+      "name": "26 - PUT harga nol ditolak",
+      "method": "PUT",
+      "path": "/products",
+      "requestBody": "{\"id\":1,\"name\":\"Buku\",\"price\":0}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
       "response": {
-        "message": "Produk berhasil dihapus",
-        "data": {
-          "id": 4,
-          "name": "Sampel Gratis",
-          "price": 0
-        }
+        "message": "name (string tidak kosong) dan price (number > 0) wajib diisi"
       },
       "passed": true
     },
@@ -360,6 +369,21 @@
           "id": 2,
           "name": "Pulpen",
           "price": 5000
+        },
+        {
+          "id": 3,
+          "name": "Spidol",
+          "price": 8000
+        },
+        {
+          "id": 4,
+          "name": "Penggaris",
+          "price": 6000
+        },
+        {
+          "id": 5,
+          "name": "Penghapus",
+          "price": 3000
         }
       ],
       "passed": true

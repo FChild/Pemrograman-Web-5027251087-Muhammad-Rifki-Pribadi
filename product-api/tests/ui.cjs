@@ -1,0 +1,162 @@
+// Pengujian browser nyata pada database sementara, termasuk screenshot evidence.
+// Jalankan `npm run build` dan `npx playwright install chromium` sebelumnya.
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const { spawn, spawnSync } = require('node:child_process');
+const { once } = require('node:events');
+const { chromium } = require('playwright');
+const root = path.resolve(__dirname, '..');
+const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'product-ui-'));
+process.env.DATABASE_URL = `file:${path.join(temp, 'ui.db').replaceAll('\\', '/')}`;
+const prisma = require('../config/prisma');
+const evidence = path.join(root, 'docs', 'evidence');
+const shots = path.join(root, 'docs', 'screenshots', 'tugas-3');
+fs.mkdirSync(shots, { recursive: true });
+const results = [];
+const snapshots = {};
+let browser, server, studio, baseUrl;
+const all = () => prisma.product.findMany({ orderBy: { id: 'asc' } });
+function command(args) {
+  const result = spawnSync(process.execPath, args, { cwd: root, env: process.env, encoding: 'utf8' });
+  if (result.status !== 0) throw new Error(result.stderr || result.stdout);
+}
+async function launch(args, pattern, env = {}) {
+  const proc = spawn(process.execPath, args, { cwd: root, env: { ...process.env, ...env }, stdio: ['ignore', 'pipe', 'pipe'] });
+  const url = await new Promise((resolve, reject) => {
+    let output = '';
+    const timeout = setTimeout(() => { proc.kill(); reject(new Error(`Startup timeout: ${output}`)); }, 20000);
+    const onData = (data) => { output += data; const match = output.match(pattern); if (match) { clearTimeout(timeout); resolve(match[0]); } };
+    proc.stdout.on('data', onData); proc.stderr.on('data', onData);
+    proc.once('error', (error) => { clearTimeout(timeout); reject(error); });
+    proc.once('exit', (code) => { clearTimeout(timeout); reject(new Error(`Server exit ${code}: ${output}`)); });
+  });
+  return { proc, url };
+}
+async function stop(proc) { if (proc && proc.exitCode === null) { const done = once(proc, 'exit'); proc.kill(); await done; } }
+function pass(name) { results.push({ name, passed: true }); console.log(`PASS ${name}`); }
+async function shot(page, filename) { await page.screenshot({ path: path.join(shots, filename), fullPage: true, animations: 'disabled' }); }
+async function expectText(locator, text) { await locator.filter({ hasText: text }).first().waitFor(); }
+async function main() {
+  command(['scripts/init-db.js']);
+  command(['node_modules/prisma/build/index.js', 'migrate', 'deploy']);
+  command(['prisma/seed.js']);
+  const initial = await all();
+  ({ proc: server, url: baseUrl } = await launch(['app.js'], /http:\/\/localhost:\d+/, { PORT: '0' }));
+  browser = await chromium.launch({ headless: true, ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}) });
+  const page = await browser.newPage({ viewport: { width: 1280, height: 820 }, locale: 'id-ID' });
+  const errors = []; page.on('pageerror', (error) => errors.push(error.message));
+  await page.goto(baseUrl);
+  await page.getByRole('article').first().waitFor();
+  assert.equal(await page.getByRole('article').count(), 5);
+  await shot(page, '01-halaman-utama.png'); pass('Halaman utama memuat 5 produk dari database');
+  const search = page.getByRole('textbox', { name: 'Cari nama produk' });
+  await search.fill('  pULpEn  ');
+  assert.equal(await page.getByRole('article').count(), 1);
+  await expectText(page.getByRole('article'), 'Pulpen');
+  await shot(page, '02-pencarian.png'); pass('Pencarian mengabaikan huruf besar/kecil dan spasi tepi');
+  await search.fill('tidak-ada-produk-xyz');
+  await page.getByRole('heading', { name: 'Produk tidak ditemukan' }).waitFor();
+  await shot(page, '03-pencarian-kosong.png'); pass('Pencarian tanpa hasil menampilkan empty state');
+  await page.getByRole('button', { name: 'Hapus Pencarian', exact: true }).click();
+  await page.getByRole('button', { name: 'Tambah Produk', exact: true }).click();
+  await page.getByRole('dialog').waitFor();
+  await shot(page, '04-popup-tambah.png');
+  await page.getByRole('button', { name: 'Simpan Produk', exact: true }).click();
+  await page.getByText('Nama produk wajib diisi.', { exact: true }).waitFor();
+  await page.getByText('Harga harus berupa angka lebih dari 0.', { exact: true }).waitFor();
+  await shot(page, '05-validasi-kosong.png');
+  assert.deepEqual(await all(), initial); pass('Form kosong ditolak tanpa perubahan database');
+  await page.getByLabel('Nama Produk', { exact: true }).fill('Stabilo Uji');
+  await page.getByLabel('Harga (Rp)', { exact: true }).fill('0');
+  await page.getByRole('button', { name: 'Simpan Produk', exact: true }).click();
+  await page.getByText('Harga harus berupa angka lebih dari 0.', { exact: true }).waitFor();
+  assert.deepEqual(await all(), initial); pass('Harga 0 ditolak tanpa perubahan database');
+  await page.getByLabel('Harga (Rp)', { exact: true }).fill('-100');
+  await page.getByRole('button', { name: 'Simpan Produk', exact: true }).click();
+  assert.deepEqual(await all(), initial); pass('Harga negatif ditolak');
+  await page.getByRole('button', { name: 'Batal', exact: true }).click();
+  assert.equal(await page.getByRole('dialog').count(), 0); pass('Batal tambah menutup pop-up tanpa menyimpan');
+  await page.getByRole('button', { name: 'Tambah Produk', exact: true }).click();
+  await page.keyboard.press('Escape');
+  assert.equal(await page.getByRole('dialog').count(), 0); pass('Escape menutup pop-up');
+  // API failure should keep the dialog open and preserve typed data.
+  await page.getByRole('button', { name: 'Tambah Produk', exact: true }).click();
+  await page.getByLabel('Nama Produk', { exact: true }).fill('Stabilo Uji');
+  await page.getByLabel('Harga (Rp)', { exact: true }).fill('9000');
+  await page.route('**/products', (route) => route.request().method() === 'POST' ? route.fulfill({ status: 500, contentType: 'application/json', body: JSON.stringify({ message: 'Simulasi gangguan server saat pengujian.' }) }) : route.continue());
+  await page.getByRole('button', { name: 'Simpan Produk', exact: true }).click();
+  await page.getByRole('alert').waitFor();
+  assert.equal(await page.getByLabel('Nama Produk', { exact: true }).inputValue(), 'Stabilo Uji');
+  assert.deepEqual(await all(), initial);
+  await shot(page, '06-error-server-simulasi.png'); pass('Simulasi API gagal menampilkan pesan dan mempertahankan input');
+  await page.unroute('**/products');
+  snapshots.post = { before: await all() };
+  await page.getByRole('button', { name: 'Simpan Produk', exact: true }).click();
+  await page.getByRole('dialog').waitFor({ state: 'detached' });
+  await expectText(page.getByRole('status'), 'berhasil ditambahkan');
+  snapshots.post.after = await all();
+  const created = snapshots.post.after.find((product) => product.name === 'Stabilo Uji');
+  assert.ok(created); assert.equal(created.price, 9000);
+  await shot(page, '07-tambah-berhasil.png'); pass('Tambah produk melalui UI tersimpan di SQLite');
+  let card = page.getByRole('article', { name: 'Produk Stabilo Uji', exact: true });
+  await card.getByRole('button', { name: 'Edit', exact: true }).click();
+  assert.equal(await page.getByLabel('Nama Produk', { exact: true }).inputValue(), 'Stabilo Uji');
+  assert.equal(await page.getByLabel('Harga (Rp)', { exact: true }).inputValue(), '9000');
+  await shot(page, '08-popup-edit.png'); pass('Pop-up edit terisi data produk yang dipilih');
+  snapshots.put = { before: await all() };
+  await page.getByLabel('Nama Produk', { exact: true }).fill('Stabilo Premium');
+  await page.getByLabel('Harga (Rp)', { exact: true }).fill('12000');
+  await page.getByRole('button', { name: 'Simpan Perubahan', exact: true }).click();
+  await page.getByRole('dialog').waitFor({ state: 'detached' });
+  snapshots.put.after = await all();
+  assert.deepEqual(snapshots.put.after.find((product) => product.id === created.id), { id: created.id, name: 'Stabilo Premium', price: 12000 });
+  await shot(page, '09-edit-berhasil.png'); pass('Edit mengubah nama dan harga dengan ID tetap');
+  await page.reload();
+  await page.getByRole('article', { name: 'Produk Stabilo Premium', exact: true }).waitFor();
+  pass('Produk hasil edit tetap ada setelah reload browser');
+  await stop(server);
+  ({ proc: server, url: baseUrl } = await launch(['app.js'], /http:\/\/localhost:\d+/, { PORT: '0' }));
+  await page.goto(baseUrl);
+  card = page.getByRole('article', { name: 'Produk Stabilo Premium', exact: true });
+  await card.waitFor(); pass('Produk hasil edit tetap ada setelah restart proses server');
+  await card.getByRole('button', { name: 'Hapus', exact: true }).click();
+  await shot(page, '10-popup-hapus.png');
+  await page.getByRole('button', { name: 'Batal', exact: true }).click();
+  assert.ok(await prisma.product.findUnique({ where: { id: created.id } })); pass('Batal hapus mempertahankan produk di database');
+  snapshots.delete = { before: await all() };
+  await card.getByRole('button', { name: 'Hapus', exact: true }).click();
+  await page.getByRole('button', { name: 'Hapus Produk', exact: true }).click();
+  await page.getByRole('dialog').waitFor({ state: 'detached' });
+  snapshots.delete.after = await all();
+  assert.equal(await prisma.product.findUnique({ where: { id: created.id } }), null);
+  await shot(page, '11-hapus-berhasil.png'); pass('Konfirmasi hapus menghilangkan produk dari database');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await shot(page, '12-tampilan-mobile.png');
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  pass('Tampilan mobile 390 px tidak meluber horizontal');
+  await page.getByRole('button', { name: 'Tambah Produk', exact: true }).click();
+  await shot(page, '13-popup-mobile.png');
+  assert.equal(await page.evaluate(() => document.querySelector('dialog').getBoundingClientRect().right > innerWidth), false);
+  await page.getByRole('button', { name: 'Tutup pop-up' }).click(); pass('Pop-up dapat digunakan dan ditutup pada layar mobile');
+  await page.setViewportSize({ width: 1280, height: 820 });
+  await page.route('**/products', (route) => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ message: 'Simulasi server tidak tersedia.' }) }));
+  await page.reload(); await page.getByRole('button', { name: 'Coba Lagi' }).waitFor();
+  await shot(page, '14-gagal-muat-simulasi.png');
+  await page.unroute('**/products');
+  await page.getByRole('button', { name: 'Coba Lagi' }).click();
+  await page.getByRole('article').first().waitFor(); pass('Simulasi gagal memuat dapat dipulihkan dengan Coba Lagi');
+  // Empty database state is tested only on this isolated temporary database.
+  await prisma.product.deleteMany();
+  await page.reload(); await page.getByRole('heading', { name: 'Belum ada produk' }).waitFor();
+  await shot(page, '15-database-kosong.png'); pass('Database kosong menampilkan ajakan tambah produk');
+  assert.deepEqual(errors, []); pass('Tidak ada uncaught JavaScript error selama alur browser');
+  fs.writeFileSync(path.join(evidence, 'ui-test-results.json'), JSON.stringify({ executedAt: new Date().toISOString(), browser: await browser.version(), total: results.length, passed: results.length, results, note: 'Skenario error server memakai response interception yang dinyatakan sebagai simulasi. CRUD dan persistensi diuji pada API dan SQLite nyata.' }, null, 2) + '\n');
+  fs.writeFileSync(path.join(evidence, 'ui-database-before-after.json'), JSON.stringify(snapshots, null, 2) + '\n');
+  console.log(`\n${results.length}/${results.length} pemeriksaan browser lulus.`);
+}
+main().catch((error) => { console.error(error); process.exitCode = 1; }).finally(async () => {
+  await browser?.close(); await stop(server); await stop(studio); await prisma.$disconnect();
+  fs.rmSync(temp, { recursive: true, force: true });
+});

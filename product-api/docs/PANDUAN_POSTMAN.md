@@ -23,7 +23,7 @@ Setup `.env`, dependency, migration, dan seed harus sudah dilakukan seperti READ
 3. Pilih file `postman/Product-API-Prisma.postman_collection.json`, atau seret file itu ke dialog import.
 4. Di sidebar **Collections**, buka **Product API Prisma - 28 Skenario**.
 5. Buka request **01 - GET seluruh produk**, lalu klik **Send**.
-6. Respons yang diharapkan: `200 OK` dan array produk. Jika database masih baru, terdapat Buku dan Pulpen.
+6. Respons yang diharapkan: `200 OK` dan array produk. Jika database masih baru, terdapat Buku, Pulpen, Spidol, Penggaris, dan Penghapus.
 
 Base URL sudah diisi `http://localhost:3000`. Kamu tidak perlu membuat environment. Jika memakai port lain, ubah variabel **baseUrl** pada collection.
 
@@ -95,7 +95,7 @@ Tidak perlu menjalankan seed atau setup ulang ketika restart biasa.
 4. Refresh Studio. Record dengan ID tersebut harus hilang: `21-db-after-delete.png`.
 5. Send request 23: GET ID yang dihapus harus 404. Simpan `22-get-deleted.png`.
 6. Send request 24: menghapus ID yang sama lagi harus 404. Simpan `23-delete-not-found.png`.
-7. Request 25 membuktikan harga 0 diterima (201); request 26 menghapus produk uji tersebut (200).
+7. Request 25 menguji POST dengan harga 0 (400); request 26 menguji PUT dengan harga 0 (400). Keduanya harus ditolak sesuai aturan harga lebih dari 0.
 8. Request 27 menampilkan daftar akhir dan request 28 membuktikan endpoint tidak ada menghasilkan 404.
 
 ## D. Jika ingin memakai Runner

@@ -2,7 +2,7 @@
   "collection": {
     "item": [
       {
-        "id": "c6971126-1f00-4538-82bd-e3d529b9d6c5",
+        "id": "41fbfc49-6ace-414f-b962-7c5c4c7d9418",
         "name": "01 - GET seluruh produk",
         "request": {
           "description": {
@@ -26,19 +26,19 @@
           {
             "listen": "test",
             "script": {
-              "id": "f974c315-9847-4272-a9cf-2c48ecb48baf",
+              "id": "628e161d-8fff-4fa8-bd3b-5957ac27f323",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                 "pm.test('Response berupa array', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
               ],
-              "_lastExecutionId": "78355018-96e2-4f73-b09e-44f6e617b3b4"
+              "_lastExecutionId": "ac20d05b-e06e-4c9b-b819-e19c6e9d6b99"
             }
           }
         ]
       },
       {
-        "id": "2e524cba-2166-406a-9000-7f8792e5d3c2",
+        "id": "2f488dce-d7e4-423b-ab9a-63cee8a6ae98",
         "name": "02 - GET produk Buku",
         "request": {
           "description": {
@@ -63,18 +63,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "08d53ffe-2379-4219-820c-d3dd1bb52a0d",
+              "id": "9bdd4c2b-6f7f-4890-bc5e-dbb9579b4d37",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
               ],
-              "_lastExecutionId": "d7d4aad4-54ec-48e2-80c0-49949a7528ad"
+              "_lastExecutionId": "35dc1d07-c04d-4233-a6e0-4811950b7d41"
             }
           }
         ]
       },
       {
-        "id": "c3234f94-b95a-48d8-8009-5d776ebc4d82",
+        "id": "50bfd26a-904d-4879-afa0-76be2b52d33f",
         "name": "03 - GET ID tidak ditemukan",
         "request": {
           "description": {
@@ -99,18 +99,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "f91cd2f9-dbfc-44a9-8b1c-84526853d7ac",
+              "id": "229960b0-5bb2-47d9-acf2-fb6a283520e8",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
               ],
-              "_lastExecutionId": "d6e96bdb-eccd-4722-9fc8-f4a8921a106d"
+              "_lastExecutionId": "16807f4e-b39e-4808-b3d2-18ebca371659"
             }
           }
         ]
       },
       {
-        "id": "0b301dfc-4d60-45c8-bc9e-7478a2d9c300",
+        "id": "e73cc7f3-6d25-4699-a3d1-02a41fa6688b",
         "name": "04 - GET ID tidak valid",
         "request": {
           "description": {
@@ -135,18 +135,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "f7cd73e5-0ac4-466e-bd16-9ff09d653cba",
+              "id": "e364a03d-b26e-479e-97ae-154a5e62cdb0",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "70233dde-4d78-44c1-809c-bc3aa5467ee9"
+              "_lastExecutionId": "0f8b351a-9f68-4673-a5da-3cbb5ca30ee9"
             }
           }
         ]
       },
       {
-        "id": "1ef31b3b-d33f-42fd-9653-692deda0eee6",
+        "id": "9219909e-cbaa-4ad3-b2ef-b98ef13eac63",
         "name": "05 - POST produk baru",
         "request": {
           "description": {
@@ -185,7 +185,7 @@
           {
             "listen": "test",
             "script": {
-              "id": "44d2978f-da25-48fe-8db5-a82d1d4db82e",
+              "id": "e7029db6-6dc1-4517-9548-94d7d6592c98",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 201', function () { pm.response.to.have.status(201); });",
@@ -193,13 +193,13 @@
                 "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus\"); });",
                 "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(2000); });"
               ],
-              "_lastExecutionId": "25e84ca4-73e8-4687-b792-6c7df94f8b41"
+              "_lastExecutionId": "5460c7b4-8209-487f-81ba-7399bb2b0137"
             }
           }
         ]
       },
       {
-        "id": "ee9b78f2-b41c-465f-91a3-f38d94907e74",
+        "id": "29a3fa90-ee01-48f1-be6f-85c353975cc1",
         "name": "06 - GET produk baru",
         "request": {
           "description": {
@@ -224,20 +224,20 @@
           {
             "listen": "test",
             "script": {
-              "id": "b44f4751-186e-4cf6-ac6a-a64c61bb8096",
+              "id": "86521861-14bf-43a4-9000-ec3e9fc255ad",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                 "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus\"); });",
                 "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(2000); });"
               ],
-              "_lastExecutionId": "0f574a95-bfce-4e6f-bd2c-85e7245529f0"
+              "_lastExecutionId": "c5fb9e20-5c7b-4a5d-90aa-71d101857ae9"
             }
           }
         ]
       },
       {
-        "id": "d71c6636-09e3-4636-9b7d-f2d1af60889c",
+        "id": "40344a60-a66f-46ee-8218-a59d73965c73",
         "name": "07 - POST nama kosong",
         "request": {
           "description": {
@@ -276,18 +276,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "85edf8ee-9839-4fd5-9c51-df5f323a09e7",
+              "id": "f4eeccf4-c150-44f3-968d-b07ae87dab3c",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "0b26f738-0bcf-468c-9b52-76d8d2e821ab"
+              "_lastExecutionId": "1a870ee9-6c9c-446d-b02c-f50a00b9ce6b"
             }
           }
         ]
       },
       {
-        "id": "d9c5ba8c-3a87-40c1-91dd-f3ca625ba084",
+        "id": "a1328f8a-4418-48e7-9b6d-0df47f81e26e",
         "name": "08 - POST harga negatif",
         "request": {
           "description": {
@@ -326,18 +326,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "e85f6896-aaa8-4f60-92bc-83a7bbafb835",
+              "id": "6cc0604b-3ade-4ead-b039-96bcaef5b310",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "5db35bfb-bb47-477c-a85c-297f87905269"
+              "_lastExecutionId": "8020028e-1475-42a7-960f-c876e21c6702"
             }
           }
         ]
       },
       {
-        "id": "0cfb6fac-ac00-4051-8e94-23e96b0d3d70",
+        "id": "b37b6e5c-a85c-4532-bbf9-e9c10b1c8ba2",
         "name": "09 - POST harga string",
         "request": {
           "description": {
@@ -376,18 +376,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "c551d63a-b344-4e4a-a1f1-d2ed2c492ae5",
+              "id": "65025303-a30b-472a-af61-25f8685a61e1",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "8ba1e8a2-e499-40e1-9bcf-253b609f7776"
+              "_lastExecutionId": "f557c5ba-6b82-4630-b6f8-86b736fed174"
             }
           }
         ]
       },
       {
-        "id": "cd0bb666-001d-410b-a233-75fc07ef371d",
+        "id": "2cdb6b1e-c58d-496c-870d-39d431b503e1",
         "name": "10 - POST field kurang",
         "request": {
           "description": {
@@ -426,18 +426,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "7b107370-752f-4367-bfe9-ef61214d5127",
+              "id": "27018ffc-047e-4dfd-9005-be58d7e19490",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "5ea102ac-a040-4255-af02-c831a793942d"
+              "_lastExecutionId": "dd00d333-5bbf-48b6-9e0a-18c92755478f"
             }
           }
         ]
       },
       {
-        "id": "16f21999-2b8b-4726-9215-15568036afee",
+        "id": "4f8a10c2-b0dc-4c08-882d-daaeca3d499a",
         "name": "11 - POST JSON rusak",
         "request": {
           "description": {
@@ -476,18 +476,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "17c0cc77-5d97-4a1b-be39-67aa8a303ba2",
+              "id": "3e91ad62-c0c8-4400-a4fd-c075a7a66fd7",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "e58c61d2-cfdc-4136-a45f-688f7501c702"
+              "_lastExecutionId": "c0b3a13a-fc51-4e75-a7d6-27d43ec1187e"
             }
           }
         ]
       },
       {
-        "id": "c232f99a-ff08-4b46-9088-ca94e04ead08",
+        "id": "a75441e2-ed2b-4e8b-9394-fc94d88adc79",
         "name": "12 - PUT produk berhasil",
         "request": {
           "description": {
@@ -526,20 +526,20 @@
           {
             "listen": "test",
             "script": {
-              "id": "727231eb-d29b-48b3-b697-d6846e02d8a9",
+              "id": "428eb984-fb53-4ca2-beb2-2def6f4cf8f7",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                 "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus Premium\"); });",
                 "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(3500); });"
               ],
-              "_lastExecutionId": "566a369e-21cb-4efc-8d0f-384334504907"
+              "_lastExecutionId": "1b9c9f40-526b-418f-a6fb-d208dec9da39"
             }
           }
         ]
       },
       {
-        "id": "f538d5cb-b19f-4e5d-9c9a-6c9617a6f46b",
+        "id": "42799ead-00de-48af-8db4-464094ec7680",
         "name": "13 - GET hasil PUT",
         "request": {
           "description": {
@@ -564,20 +564,20 @@
           {
             "listen": "test",
             "script": {
-              "id": "c9b504d5-7b95-4f6a-8a03-f3cf9fdb5472",
+              "id": "459953fd-8d03-4e47-bd3d-4462cc28050d",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                 "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus Premium\"); });",
                 "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(3500); });"
               ],
-              "_lastExecutionId": "ae258620-52c9-4e98-bf40-54db060cad3f"
+              "_lastExecutionId": "c5665060-c39c-4195-9cd8-595204b04cae"
             }
           }
         ]
       },
       {
-        "id": "cd6bbc63-8688-4c94-9612-55437e472a14",
+        "id": "f20ed28d-07a4-4781-be21-18b6c1f0f260",
         "name": "14 - PUT tanpa ID",
         "request": {
           "description": {
@@ -616,18 +616,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "871398d8-4802-45ac-812d-b42db3e5d3a2",
+              "id": "28b85b95-9ce3-4499-b5a6-c450285faa6a",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "e42d2339-4fbe-46fe-ac0c-ca328d6444e6"
+              "_lastExecutionId": "13d6e54b-0f31-4ee8-bec5-a106cf247392"
             }
           }
         ]
       },
       {
-        "id": "61a4ec98-9038-40a9-96cd-49fe097b34d1",
+        "id": "560b6b31-04ae-476f-9d7c-b56f334dd1db",
         "name": "15 - PUT ID string",
         "request": {
           "description": {
@@ -666,18 +666,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "2ce689f5-0df6-4ea2-ad38-a2871b4c875a",
+              "id": "3cfc58c1-10c5-4ac9-acaa-9cc0bc1259aa",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "7a9c7dda-5830-4765-80df-ec110c496359"
+              "_lastExecutionId": "6eb9dd09-acff-4739-a6e3-c4cc47eb4924"
             }
           }
         ]
       },
       {
-        "id": "4de57d98-4c04-4c6c-a2c5-ac21cbc9fa58",
+        "id": "03e82b8f-9a8b-4a40-9f3c-2bbf5b80db1c",
         "name": "16 - PUT nama kosong",
         "request": {
           "description": {
@@ -716,18 +716,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "ef60302e-2139-42a5-8c38-e5ca97ade08c",
+              "id": "c6fef169-05d7-423a-81b7-2dc25279b5bc",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "5e7eaf7d-ede1-455e-b410-370bbf44b2ea"
+              "_lastExecutionId": "bff1b546-502c-4c43-a1fa-23c0811be299"
             }
           }
         ]
       },
       {
-        "id": "5648f737-b0a8-44c2-a385-5c6ba3793018",
+        "id": "0589a63f-3a4b-4488-858f-5da7fb577684",
         "name": "17 - PUT harga negatif",
         "request": {
           "description": {
@@ -766,18 +766,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "08c962a4-b4b5-4788-98fc-5b5d322e6339",
+              "id": "1c986670-a3b8-4736-a868-e3795965cfe7",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "c3e2fb20-5c44-48b7-9d3a-4b85534408ee"
+              "_lastExecutionId": "9cf25bd3-7509-4fe0-8c71-247674a4a694"
             }
           }
         ]
       },
       {
-        "id": "c05fc42b-ac07-46eb-ad85-cca799ebca75",
+        "id": "890f6154-65ce-4fe2-8736-2c1ece902839",
         "name": "18 - PUT field harga kurang",
         "request": {
           "description": {
@@ -816,18 +816,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "a4a4517e-2a0b-4123-aced-6e9b570cce9d",
+              "id": "3e7d9f1f-10a1-4a3d-a6c5-0b40bb809355",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "1e398f5d-47b0-4f55-9192-74e3ec276e2c"
+              "_lastExecutionId": "05df1491-10be-423d-9140-cbc72ce3f92e"
             }
           }
         ]
       },
       {
-        "id": "bc9749ab-2963-4f41-bb68-55438e5fe4c9",
+        "id": "9458c049-865c-4f3e-b107-e92f496d83f4",
         "name": "19 - PUT ID tidak ditemukan",
         "request": {
           "description": {
@@ -866,18 +866,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "a819984d-efbb-4f81-9c36-0e42178fe540",
+              "id": "2d314ed0-4a0b-4219-b8cd-5e1608b2e18e",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
               ],
-              "_lastExecutionId": "9fe7ee55-a05a-4b59-9aaf-7146810fd192"
+              "_lastExecutionId": "b6bf53f5-83b0-42d1-b16e-44be31167d0f"
             }
           }
         ]
       },
       {
-        "id": "e83648cb-d0e4-4fcd-ad51-6e7c4f28ffe5",
+        "id": "f92ad682-5643-4f9a-afcb-2d7d1035eaef",
         "name": "20 - DELETE ID tidak valid",
         "request": {
           "description": {
@@ -902,18 +902,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "6450823e-cf32-4312-991b-ccc53edf8c7d",
+              "id": "38ab3ebd-a59b-4f63-a224-eaf9594afa85",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "3c088158-54a3-4ec7-9668-69cd390caa1d"
+              "_lastExecutionId": "899c3787-82fb-4aa8-bc6f-5f015cd5354d"
             }
           }
         ]
       },
       {
-        "id": "6989ae41-d19b-4701-9678-8af8994ebe93",
+        "id": "51b3066c-2804-40dc-84af-cfb58c88726a",
         "name": "21 - DELETE ID tidak ditemukan",
         "request": {
           "description": {
@@ -938,18 +938,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "9b7d1040-5bfa-4dd0-b05a-c11d91c2ef87",
+              "id": "aedd0bc3-d538-474a-b029-575f6c4ef6a6",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
               ],
-              "_lastExecutionId": "6f700917-65a2-48ee-ba5b-ce5fadcebecd"
+              "_lastExecutionId": "5408650d-f5f3-49d5-bb93-34e6c11a267e"
             }
           }
         ]
       },
       {
-        "id": "c5099c1a-ec62-4b39-9c8f-c0c5a73b6a18",
+        "id": "15e7d6d3-5394-49e0-93a5-755b1bc24137",
         "name": "22 - DELETE produk berhasil",
         "request": {
           "description": {
@@ -974,18 +974,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "0796ce4e-43f9-413a-ab54-66ab436b8204",
+              "id": "d5b9186a-a79f-4c15-b74a-1d637910df68",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
               ],
-              "_lastExecutionId": "215ae313-3616-47f5-ba0e-9df951ff8e60"
+              "_lastExecutionId": "581aff70-ff91-4e4d-a894-b4263b64948a"
             }
           }
         ]
       },
       {
-        "id": "5627d6d5-ed4b-4940-b603-f68275fd8784",
+        "id": "9ce97bfb-831a-44a8-9aea-91449066749d",
         "name": "23 - GET produk setelah dihapus",
         "request": {
           "description": {
@@ -1010,18 +1010,18 @@
           {
             "listen": "test",
             "script": {
-              "id": "0705c914-26f6-4771-b43f-ec552f7e2e55",
+              "id": "b7152471-6510-47ca-9e29-6a934974dbf5",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
               ],
-              "_lastExecutionId": "44278704-2421-4a8a-8295-49e0d35f4fcd"
+              "_lastExecutionId": "000fbd14-e600-44a7-8d58-2482b3cb6219"
             }
           }
         ]
       },
       {
-        "id": "484c4e82-6097-44ff-871b-be88d4e4c095",
+        "id": "eb3fb912-07b8-425f-a223-eae256b9c0da",
         "name": "24 - DELETE ulang produk",
         "request": {
           "description": {
@@ -1046,22 +1046,22 @@
           {
             "listen": "test",
             "script": {
-              "id": "d9c9b5a9-5b8e-4501-a75b-c4297081fff2",
+              "id": "2e5c8239-9998-4a5e-9678-0df439adcc56",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
               ],
-              "_lastExecutionId": "d961f5b8-fef6-45bd-98cf-a3a5b0ff5f1e"
+              "_lastExecutionId": "760738a8-a3d3-4fc0-a57f-0830e88665af"
             }
           }
         ]
       },
       {
-        "id": "2e98b6e5-962f-409f-8999-4d0e33c64417",
-        "name": "25 - POST harga nol valid",
+        "id": "3e201ec2-1de4-4215-9fc9-18f4d353c98f",
+        "name": "25 - POST harga nol ditolak",
         "request": {
           "description": {
-            "content": "Status yang diharapkan: 201. Jalankan sesuai urutan collection.",
+            "content": "Harga harus lebih dari 0 sesuai tampilan tugas 3.",
             "type": "text/plain"
           },
           "url": {
@@ -1096,31 +1096,27 @@
           {
             "listen": "test",
             "script": {
-              "id": "e56a3215-d759-443d-a45c-1d108b6d1bfc",
+              "id": "f89ee315-6605-42f2-8722-d8148d552e1b",
               "type": "text/javascript",
               "exec": [
-                "pm.test('Status 201', function () { pm.response.to.have.status(201); });",
-                "if (pm.response.code === 201) pm.collectionVariables.set('freeProductId', pm.response.json().id);",
-                "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Sampel Gratis\"); });",
-                "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(0); });"
+                "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "30d58f90-8b2b-494a-b374-5708c6c3274f"
+              "_lastExecutionId": "bdff2751-e32c-4d2d-860f-154f511af921"
             }
           }
         ]
       },
       {
-        "id": "3116b9fd-9945-4cb6-9b94-41b79041276b",
-        "name": "26 - DELETE produk harga nol",
+        "id": "073b29bc-b0d2-4c9a-89d5-bb1f963d3974",
+        "name": "26 - PUT harga nol ditolak",
         "request": {
           "description": {
-            "content": "Status yang diharapkan: 200. Jalankan sesuai urutan collection.",
+            "content": "Harga harus lebih dari 0 sesuai tampilan tugas 3.",
             "type": "text/plain"
           },
           "url": {
             "path": [
-              "products",
-              "{{freeProductId}}"
+              "products"
             ],
             "host": [
               "{{baseUrl}}"
@@ -1128,25 +1124,40 @@
             "query": [],
             "variable": []
           },
-          "method": "DELETE"
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"id\": 1,\n  \"name\": \"Buku\",\n  \"price\": 0\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
         },
         "response": [],
         "event": [
           {
             "listen": "test",
             "script": {
-              "id": "56d7eef4-57ec-4928-ac01-f2522ff622df",
+              "id": "f1f352d8-7d61-48f1-ac9b-570be9c72886",
               "type": "text/javascript",
               "exec": [
-                "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+                "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
               ],
-              "_lastExecutionId": "a146648e-38b4-4828-a502-17dca84fa1d8"
+              "_lastExecutionId": "0c13c07e-6707-4fd3-998c-9cdbf8e5855c"
             }
           }
         ]
       },
       {
-        "id": "633a872d-b1a5-4fc2-84c8-22db8cdc8da9",
+        "id": "25c52619-c58f-446e-bf6a-2dc747e0eaca",
         "name": "27 - GET daftar akhir",
         "request": {
           "description": {
@@ -1170,19 +1181,19 @@
           {
             "listen": "test",
             "script": {
-              "id": "237283db-2113-42d6-b5fb-50b46e18b862",
+              "id": "65dfc4b9-a898-4639-8d01-6ce939978a7a",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                 "pm.test('Response berupa array', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
               ],
-              "_lastExecutionId": "919a4ce6-ae04-4b2e-840a-de62ec04f57b"
+              "_lastExecutionId": "ca043f4f-de26-472a-9c6d-1244695fae50"
             }
           }
         ]
       },
       {
-        "id": "0b08906a-e6fb-4577-a042-006142706653",
+        "id": "271ccf37-ff3e-443b-89f1-f56110a311be",
         "name": "28 - Endpoint tidak tersedia",
         "request": {
           "description": {
@@ -1206,12 +1217,12 @@
           {
             "listen": "test",
             "script": {
-              "id": "80af3504-80c6-43ef-b9cd-4ffa9d7aee03",
+              "id": "4a73f8f7-430e-48e7-8c53-cab0d0ac9530",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
               ],
-              "_lastExecutionId": "073e8933-5f5f-4e06-93b1-f7f85a5985e5"
+              "_lastExecutionId": "5208294f-036b-4f07-93dd-9aed3619b0a3"
             }
           }
         ]
@@ -1228,15 +1239,10 @@
         "type": "any",
         "value": "",
         "key": "productId"
-      },
-      {
-        "type": "any",
-        "value": "",
-        "key": "freeProductId"
       }
     ],
     "info": {
-      "_postman_id": "aea2c03f-360d-4161-a570-706be5efe6d0",
+      "_postman_id": "12aee4f7-68b3-4348-8d7e-67073599fdad",
       "name": "Product API Prisma - 28 Skenario",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
       "description": {
@@ -1246,11 +1252,11 @@
     }
   },
   "environment": {
-    "id": "ab0d5535-38dc-425c-84f3-c69214732c6f",
+    "id": "134461a6-31a5-4953-85f0-223e80f38dbd",
     "values": []
   },
   "globals": {
-    "id": "5a2116bb-be0e-493f-aadd-20fdecb85e4f",
+    "id": "6c2490cd-77fe-4db9-8694-217119a98783",
     "values": []
   },
   "run": {
@@ -1286,7 +1292,7 @@
         "failed": 0
       },
       "assertions": {
-        "total": 40,
+        "total": 38,
         "pending": 0,
         "failed": 0
       },
@@ -1302,10 +1308,10 @@
       }
     },
     "timings": {
-      "responseAverage": 5.142857142857143,
+      "responseAverage": 3.2142857142857144,
       "responseMin": 1,
-      "responseMax": 39,
-      "responseSd": 6.988328462077149,
+      "responseMax": 27,
+      "responseSd": 4.872350143243746,
       "dnsAverage": 0,
       "dnsMin": 0,
       "dnsMax": 0,
@@ -1314,8 +1320,8 @@
       "firstByteMin": 0,
       "firstByteMax": 0,
       "firstByteSd": 0,
-      "started": 1794658601975,
-      "completed": 1794658602537
+      "started": 1794661482619,
+      "completed": 1794661483053
     },
     "executions": [
       {
@@ -1328,11 +1334,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "a9c5ae96-d226-4f22-af97-20f650e0d769",
-          "httpRequestId": "3d0e5e00-8712-419e-a4db-6a3ffdd9e7ef"
+          "ref": "4f325f0a-dd05-4263-ad8c-e9d0a5e329a9",
+          "httpRequestId": "d8b3d10e-88d6-4ac9-9aba-2e32116abbfa"
         },
         "item": {
-          "id": "c6971126-1f00-4538-82bd-e3d529b9d6c5",
+          "id": "41fbfc49-6ace-414f-b962-7c5c4c7d9418",
           "name": "01 - GET seluruh produk",
           "request": {
             "description": {
@@ -1356,13 +1362,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "f974c315-9847-4272-a9cf-2c48ecb48baf",
+                "id": "628e161d-8fff-4fa8-bd3b-5957ac27f323",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                   "pm.test('Response berupa array', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
                 ],
-                "_lastExecutionId": "78355018-96e2-4f73-b09e-44f6e617b3b4"
+                "_lastExecutionId": "ac20d05b-e06e-4c9b-b819-e19c6e9d6b99"
               }
             }
           ]
@@ -1402,7 +1408,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "fda1fda2-cfd8-4290-b1f6-e561db474ec8",
+              "value": "0f0df1d6-afe5-453a-9198-9fea9883cf7b",
               "system": true
             },
             {
@@ -1424,7 +1430,7 @@
           "method": "GET"
         },
         "response": {
-          "id": "e8eb6c80-5b79-4812-9181-115a6a7b15e6",
+          "id": "7694efb6-68ba-4a24-a380-620f16515e30",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1438,15 +1444,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "196"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-uFXLLQbohGea6vnPxTWuWUbADdE\""
+              "value": "W/\"c4-rwM+yIz4caLe7zeFGS5CDWTv/QI\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -1535,14 +1541,134 @@
               48,
               48,
               125,
+              44,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              51,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              112,
+              105,
+              100,
+              111,
+              108,
+              34,
+              44,
+              34,
+              112,
+              114,
+              105,
+              99,
+              101,
+              34,
+              58,
+              56,
+              48,
+              48,
+              48,
+              125,
+              44,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              52,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              101,
+              110,
+              103,
+              103,
+              97,
+              114,
+              105,
+              115,
+              34,
+              44,
+              34,
+              112,
+              114,
+              105,
+              99,
+              101,
+              34,
+              58,
+              54,
+              48,
+              48,
+              48,
+              125,
+              44,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              53,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              101,
+              110,
+              103,
+              104,
+              97,
+              112,
+              117,
+              115,
+              34,
+              44,
+              34,
+              112,
+              114,
+              105,
+              99,
+              101,
+              34,
+              58,
+              51,
+              48,
+              48,
+              48,
+              125,
               93
             ]
           },
           "cookie": [],
-          "responseTime": 39,
-          "responseSize": 76
+          "responseTime": 27,
+          "responseSize": 196
         },
-        "id": "c6971126-1f00-4538-82bd-e3d529b9d6c5",
+        "id": "41fbfc49-6ace-414f-b962-7c5c4c7d9418",
         "assertions": [
           {
             "assertion": "Status 200",
@@ -1556,15 +1682,15 @@
       },
       {
         "cursor": {
-          "ref": "287160c9-d291-40dd-bf79-35208f3df3eb",
+          "ref": "9ade7929-7d42-4812-973a-edd5c4a5b035",
           "length": 28,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "3d8f8516-bcd3-49d4-ac83-2dc96e9cf3d0"
+          "httpRequestId": "118128a3-0a61-4d63-bc2b-4f23bbd5e7f8"
         },
         "item": {
-          "id": "2e524cba-2166-406a-9000-7f8792e5d3c2",
+          "id": "2f488dce-d7e4-423b-ab9a-63cee8a6ae98",
           "name": "02 - GET produk Buku",
           "request": {
             "description": {
@@ -1589,12 +1715,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "08d53ffe-2379-4219-820c-d3dd1bb52a0d",
+                "id": "9bdd4c2b-6f7f-4890-bc5e-dbb9579b4d37",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
                 ],
-                "_lastExecutionId": "d7d4aad4-54ec-48e2-80c0-49949a7528ad"
+                "_lastExecutionId": "35dc1d07-c04d-4233-a6e0-4811950b7d41"
               }
             }
           ]
@@ -1635,7 +1761,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "479f7850-a6f6-4538-8500-bb3fd1a335e4",
+              "value": "7c83e4af-0db6-4798-967f-4f187bc727ca",
               "system": true
             },
             {
@@ -1657,7 +1783,7 @@
           "method": "GET"
         },
         "response": {
-          "id": "3caab2b6-2960-4711-b690-59dda72483b2",
+          "id": "e6ab2598-ec8f-467d-971c-c77cf43cb806",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1679,7 +1805,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -1732,10 +1858,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 6,
+          "responseTime": 5,
           "responseSize": 36
         },
-        "id": "2e524cba-2166-406a-9000-7f8792e5d3c2",
+        "id": "2f488dce-d7e4-423b-ab9a-63cee8a6ae98",
         "assertions": [
           {
             "assertion": "Status 200",
@@ -1745,15 +1871,15 @@
       },
       {
         "cursor": {
-          "ref": "29d01b60-e655-4463-bc30-93a4118c8f59",
+          "ref": "91ee198e-237e-4757-aec2-492a1763f5a8",
           "length": 28,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "e0ce63bf-04c1-475a-8b19-0c440ee0f1f1"
+          "httpRequestId": "6aa36bc2-7962-4d6a-a350-1fa0fc596152"
         },
         "item": {
-          "id": "c3234f94-b95a-48d8-8009-5d776ebc4d82",
+          "id": "50bfd26a-904d-4879-afa0-76be2b52d33f",
           "name": "03 - GET ID tidak ditemukan",
           "request": {
             "description": {
@@ -1778,12 +1904,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "f91cd2f9-dbfc-44a9-8b1c-84526853d7ac",
+                "id": "229960b0-5bb2-47d9-acf2-fb6a283520e8",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
                 ],
-                "_lastExecutionId": "d6e96bdb-eccd-4722-9fc8-f4a8921a106d"
+                "_lastExecutionId": "16807f4e-b39e-4808-b3d2-18ebca371659"
               }
             }
           ]
@@ -1824,7 +1950,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "65a9b8c5-8e1f-4940-8f6c-42aaf810d4e7",
+              "value": "8e885099-a88e-4df9-8698-4a91d1b9ba51",
               "system": true
             },
             {
@@ -1846,7 +1972,7 @@
           "method": "GET"
         },
         "response": {
-          "id": "89543fbb-9f5d-40bf-a9cb-993296d211e6",
+          "id": "103435ce-e649-4821-b3b4-6da8b592627e",
           "status": "Not Found",
           "code": 404,
           "header": [
@@ -1868,7 +1994,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -1924,7 +2050,7 @@
           "responseTime": 3,
           "responseSize": 36
         },
-        "id": "c3234f94-b95a-48d8-8009-5d776ebc4d82",
+        "id": "50bfd26a-904d-4879-afa0-76be2b52d33f",
         "assertions": [
           {
             "assertion": "Status 404",
@@ -1934,15 +2060,15 @@
       },
       {
         "cursor": {
-          "ref": "c3d952fc-7f18-4b62-801a-482123ce826e",
+          "ref": "c7e61208-df77-420c-bfce-44a8c8b2e510",
           "length": 28,
           "cycles": 1,
           "position": 3,
           "iteration": 0,
-          "httpRequestId": "22f49c79-8ae6-4f07-8adb-51f710d26a13"
+          "httpRequestId": "0a3a77fb-a546-4f37-be90-e4a88d078b8c"
         },
         "item": {
-          "id": "0b301dfc-4d60-45c8-bc9e-7478a2d9c300",
+          "id": "e73cc7f3-6d25-4699-a3d1-02a41fa6688b",
           "name": "04 - GET ID tidak valid",
           "request": {
             "description": {
@@ -1967,12 +2093,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "f7cd73e5-0ac4-466e-bd16-9ff09d653cba",
+                "id": "e364a03d-b26e-479e-97ae-154a5e62cdb0",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "70233dde-4d78-44c1-809c-bc3aa5467ee9"
+                "_lastExecutionId": "0f8b351a-9f68-4673-a5da-3cbb5ca30ee9"
               }
             }
           ]
@@ -2013,7 +2139,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "5befd163-ca56-4739-b06a-e139928f73be",
+              "value": "9a7d6cb5-a965-45b7-86c1-4797da5219c1",
               "system": true
             },
             {
@@ -2035,7 +2161,7 @@
           "method": "GET"
         },
         "response": {
-          "id": "a59e1e15-6330-4fdc-9cee-0cd9527a7d8b",
+          "id": "654775b6-3714-4e7d-8015-5d5987ca42c0",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -2057,7 +2183,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -2123,10 +2249,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 3,
+          "responseTime": 2,
           "responseSize": 49
         },
-        "id": "0b301dfc-4d60-45c8-bc9e-7478a2d9c300",
+        "id": "e73cc7f3-6d25-4699-a3d1-02a41fa6688b",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -2136,15 +2262,15 @@
       },
       {
         "cursor": {
-          "ref": "7266327a-13a3-413c-9d80-e3332c54e555",
+          "ref": "d9634515-086f-4ab1-94c2-09603cd23a14",
           "length": 28,
           "cycles": 1,
           "position": 4,
           "iteration": 0,
-          "httpRequestId": "8362d7f2-e580-49e4-8743-a891877fba04"
+          "httpRequestId": "e050552d-cdf2-402b-a79b-3695911154a2"
         },
         "item": {
-          "id": "1ef31b3b-d33f-42fd-9653-692deda0eee6",
+          "id": "9219909e-cbaa-4ad3-b2ef-b98ef13eac63",
           "name": "05 - POST produk baru",
           "request": {
             "description": {
@@ -2183,7 +2309,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "44d2978f-da25-48fe-8db5-a82d1d4db82e",
+                "id": "e7029db6-6dc1-4517-9548-94d7d6592c98",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 201', function () { pm.response.to.have.status(201); });",
@@ -2191,7 +2317,7 @@
                   "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus\"); });",
                   "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(2000); });"
                 ],
-                "_lastExecutionId": "25e84ca4-73e8-4687-b792-6c7df94f8b41"
+                "_lastExecutionId": "5460c7b4-8209-487f-81ba-7399bb2b0137"
               }
             }
           ]
@@ -2235,7 +2361,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "2f7b310d-4f10-4be2-b69c-f83dc7e82845",
+              "value": "dd78d7b2-2f1a-49a6-a201-56dfe91ef4fe",
               "system": true
             },
             {
@@ -2271,7 +2397,7 @@
           }
         },
         "response": {
-          "id": "d78b5365-e6b2-4333-85e9-5fedab6bb29c",
+          "id": "f68f29fd-0d59-4691-9246-bc93311b854c",
           "status": "Created",
           "code": 201,
           "header": [
@@ -2289,11 +2415,11 @@
             },
             {
               "key": "ETag",
-              "value": "W/\"28-Ov/ndW+LqXBBRAR3YvyM64shsSE\""
+              "value": "W/\"28-j7Mcy2q6XIIsiVvfjgubro1gQYo\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -2313,7 +2439,7 @@
               100,
               34,
               58,
-              51,
+              54,
               44,
               34,
               110,
@@ -2350,10 +2476,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 12,
+          "responseTime": 9,
           "responseSize": 40
         },
-        "id": "1ef31b3b-d33f-42fd-9653-692deda0eee6",
+        "id": "9219909e-cbaa-4ad3-b2ef-b98ef13eac63",
         "assertions": [
           {
             "assertion": "Status 201",
@@ -2371,15 +2497,15 @@
       },
       {
         "cursor": {
-          "ref": "84c66c48-41fc-4a6f-8307-6fc57c5c75c4",
+          "ref": "211e0805-3e34-4fe6-b73a-c60386424472",
           "length": 28,
           "cycles": 1,
           "position": 5,
           "iteration": 0,
-          "httpRequestId": "7ee77b89-4d51-4e65-8f6e-9ebe000afeb2"
+          "httpRequestId": "6fa7fdc3-9ea2-4391-818d-8fd2284f6976"
         },
         "item": {
-          "id": "ee9b78f2-b41c-465f-91a3-f38d94907e74",
+          "id": "29a3fa90-ee01-48f1-be6f-85c353975cc1",
           "name": "06 - GET produk baru",
           "request": {
             "description": {
@@ -2404,14 +2530,14 @@
             {
               "listen": "test",
               "script": {
-                "id": "b44f4751-186e-4cf6-ac6a-a64c61bb8096",
+                "id": "86521861-14bf-43a4-9000-ec3e9fc255ad",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                   "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus\"); });",
                   "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(2000); });"
                 ],
-                "_lastExecutionId": "0f574a95-bfce-4e6f-bd2c-85e7245529f0"
+                "_lastExecutionId": "c5fb9e20-5c7b-4a5d-90aa-71d101857ae9"
               }
             }
           ]
@@ -2426,7 +2552,7 @@
             "port": "3000",
             "path": [
               "products",
-              "3"
+              "6"
             ],
             "host": [
               "localhost"
@@ -2452,7 +2578,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "26be0eaa-04e0-4bb8-accc-2f411362d6ea",
+              "value": "aed67267-14a2-415e-91fb-ea5bf7cf7160",
               "system": true
             },
             {
@@ -2474,7 +2600,7 @@
           "method": "GET"
         },
         "response": {
-          "id": "11f441b0-5ae4-44db-b828-9f2390dee7e2",
+          "id": "44b30b4c-fee0-4282-b935-589af9b45646",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2492,11 +2618,11 @@
             },
             {
               "key": "ETag",
-              "value": "W/\"28-Ov/ndW+LqXBBRAR3YvyM64shsSE\""
+              "value": "W/\"28-j7Mcy2q6XIIsiVvfjgubro1gQYo\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -2516,7 +2642,7 @@
               100,
               34,
               58,
-              51,
+              54,
               44,
               34,
               110,
@@ -2553,10 +2679,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 4,
+          "responseTime": 2,
           "responseSize": 40
         },
-        "id": "ee9b78f2-b41c-465f-91a3-f38d94907e74",
+        "id": "29a3fa90-ee01-48f1-be6f-85c353975cc1",
         "assertions": [
           {
             "assertion": "Status 200",
@@ -2574,15 +2700,15 @@
       },
       {
         "cursor": {
-          "ref": "23d5b08f-0945-4dd9-8f95-c1e8a1f657f1",
+          "ref": "0c65e436-afbd-48ea-887b-d812866a4588",
           "length": 28,
           "cycles": 1,
           "position": 6,
           "iteration": 0,
-          "httpRequestId": "5aa90c8e-7917-4947-9ac0-9050f5626304"
+          "httpRequestId": "2866adde-ca67-489c-bc22-9da0fbf2069e"
         },
         "item": {
-          "id": "d71c6636-09e3-4636-9b7d-f2d1af60889c",
+          "id": "40344a60-a66f-46ee-8218-a59d73965c73",
           "name": "07 - POST nama kosong",
           "request": {
             "description": {
@@ -2621,12 +2747,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "85edf8ee-9839-4fd5-9c51-df5f323a09e7",
+                "id": "f4eeccf4-c150-44f3-968d-b07ae87dab3c",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "0b26f738-0bcf-468c-9b52-76d8d2e821ab"
+                "_lastExecutionId": "1a870ee9-6c9c-446d-b02c-f50a00b9ce6b"
               }
             }
           ]
@@ -2670,7 +2796,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "a49ce630-2a92-4a17-a762-05cd896bc27d",
+              "value": "51c4092e-06ab-447f-928b-4fd2b219a798",
               "system": true
             },
             {
@@ -2706,7 +2832,7 @@
           }
         },
         "response": {
-          "id": "83060ce3-35d2-414f-ba1b-28b6d473262a",
+          "id": "a9b60f04-1a9d-434c-88a7-502ad85aa367",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -2720,15 +2846,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "75"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-7BD5vKF+nPq5+CAAIksxq5PsPWc\""
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -2800,7 +2926,6 @@
               114,
               32,
               62,
-              61,
               32,
               48,
               41,
@@ -2821,10 +2946,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 3,
-          "responseSize": 76
+          "responseTime": 2,
+          "responseSize": 75
         },
-        "id": "d71c6636-09e3-4636-9b7d-f2d1af60889c",
+        "id": "40344a60-a66f-46ee-8218-a59d73965c73",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -2834,15 +2959,15 @@
       },
       {
         "cursor": {
-          "ref": "cb8969bb-4a3c-4a9c-9c05-9f79b3dc40de",
+          "ref": "b728c56a-45d9-46ba-b043-15606e17d927",
           "length": 28,
           "cycles": 1,
           "position": 7,
           "iteration": 0,
-          "httpRequestId": "d60d3ff1-0d89-44f1-a5b3-b59b0e6d6b4c"
+          "httpRequestId": "46ef272b-2eb4-4021-a96d-f5327386e887"
         },
         "item": {
-          "id": "d9c5ba8c-3a87-40c1-91dd-f3ca625ba084",
+          "id": "a1328f8a-4418-48e7-9b6d-0df47f81e26e",
           "name": "08 - POST harga negatif",
           "request": {
             "description": {
@@ -2881,12 +3006,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "e85f6896-aaa8-4f60-92bc-83a7bbafb835",
+                "id": "6cc0604b-3ade-4ead-b039-96bcaef5b310",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "5db35bfb-bb47-477c-a85c-297f87905269"
+                "_lastExecutionId": "8020028e-1475-42a7-960f-c876e21c6702"
               }
             }
           ]
@@ -2930,7 +3055,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "ee6b6395-76f6-428f-a873-03a1b0be18fb",
+              "value": "baf10077-b4c8-41d7-81f6-33e5b0221684",
               "system": true
             },
             {
@@ -2966,7 +3091,7 @@
           }
         },
         "response": {
-          "id": "d2abf0d0-632a-4bca-8e75-ff7e1e98d48a",
+          "id": "7a67a3ed-61d6-41b9-a045-c96e87163f95",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -2980,15 +3105,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "75"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-7BD5vKF+nPq5+CAAIksxq5PsPWc\""
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -3060,7 +3185,6 @@
               114,
               32,
               62,
-              61,
               32,
               48,
               41,
@@ -3081,10 +3205,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 3,
-          "responseSize": 76
+          "responseTime": 1,
+          "responseSize": 75
         },
-        "id": "d9c5ba8c-3a87-40c1-91dd-f3ca625ba084",
+        "id": "a1328f8a-4418-48e7-9b6d-0df47f81e26e",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -3094,15 +3218,15 @@
       },
       {
         "cursor": {
-          "ref": "11096af5-d22c-4764-8cec-62c6d4fb2fb6",
+          "ref": "32e9b236-09c7-479f-ba88-60b68b687563",
           "length": 28,
           "cycles": 1,
           "position": 8,
           "iteration": 0,
-          "httpRequestId": "38f78bca-516d-4f32-add2-1f2c2162a099"
+          "httpRequestId": "50af22e4-6abf-44fb-acde-ad375a8c6c10"
         },
         "item": {
-          "id": "0cfb6fac-ac00-4051-8e94-23e96b0d3d70",
+          "id": "b37b6e5c-a85c-4532-bbf9-e9c10b1c8ba2",
           "name": "09 - POST harga string",
           "request": {
             "description": {
@@ -3141,12 +3265,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "c551d63a-b344-4e4a-a1f1-d2ed2c492ae5",
+                "id": "65025303-a30b-472a-af61-25f8685a61e1",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "8ba1e8a2-e499-40e1-9bcf-253b609f7776"
+                "_lastExecutionId": "f557c5ba-6b82-4630-b6f8-86b736fed174"
               }
             }
           ]
@@ -3190,7 +3314,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "afd74910-2cd4-46dc-b2b7-1ed4c61c635b",
+              "value": "74a91c9d-b7e5-4f80-b7a1-7e850ef65f5a",
               "system": true
             },
             {
@@ -3226,7 +3350,7 @@
           }
         },
         "response": {
-          "id": "21e0e861-7750-4ae0-aa4a-9a24b3733a6f",
+          "id": "fb3f44d8-97e9-4834-bf71-915349848672",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -3240,15 +3364,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "75"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-7BD5vKF+nPq5+CAAIksxq5PsPWc\""
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -3320,7 +3444,6 @@
               114,
               32,
               62,
-              61,
               32,
               48,
               41,
@@ -3341,10 +3464,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 3,
-          "responseSize": 76
+          "responseTime": 2,
+          "responseSize": 75
         },
-        "id": "0cfb6fac-ac00-4051-8e94-23e96b0d3d70",
+        "id": "b37b6e5c-a85c-4532-bbf9-e9c10b1c8ba2",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -3354,15 +3477,15 @@
       },
       {
         "cursor": {
-          "ref": "1348582d-c80d-4f0b-9c7e-496881c8bee4",
+          "ref": "cdb78137-3e2d-430e-a18f-f98e5b837e5a",
           "length": 28,
           "cycles": 1,
           "position": 9,
           "iteration": 0,
-          "httpRequestId": "bbe17c37-8830-4631-8a66-4d95e3be5f3e"
+          "httpRequestId": "054f3320-4906-4dfe-af95-c56510c1de46"
         },
         "item": {
-          "id": "cd0bb666-001d-410b-a233-75fc07ef371d",
+          "id": "2cdb6b1e-c58d-496c-870d-39d431b503e1",
           "name": "10 - POST field kurang",
           "request": {
             "description": {
@@ -3401,12 +3524,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "7b107370-752f-4367-bfe9-ef61214d5127",
+                "id": "27018ffc-047e-4dfd-9005-be58d7e19490",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "5ea102ac-a040-4255-af02-c831a793942d"
+                "_lastExecutionId": "dd00d333-5bbf-48b6-9e0a-18c92755478f"
               }
             }
           ]
@@ -3450,7 +3573,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "15846455-6a82-4c16-8277-ecccdbed92a8",
+              "value": "83697507-3592-432a-908f-d3b7c365a939",
               "system": true
             },
             {
@@ -3486,7 +3609,7 @@
           }
         },
         "response": {
-          "id": "8009d837-f6e8-469d-89c1-441b64a7c0f8",
+          "id": "c81e19ac-d5d3-4a1b-a674-c1d3cda72140",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -3500,15 +3623,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "75"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-7BD5vKF+nPq5+CAAIksxq5PsPWc\""
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -3580,7 +3703,6 @@
               114,
               32,
               62,
-              61,
               32,
               48,
               41,
@@ -3601,10 +3723,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 3,
-          "responseSize": 76
+          "responseTime": 2,
+          "responseSize": 75
         },
-        "id": "cd0bb666-001d-410b-a233-75fc07ef371d",
+        "id": "2cdb6b1e-c58d-496c-870d-39d431b503e1",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -3614,15 +3736,15 @@
       },
       {
         "cursor": {
-          "ref": "ef0288a3-26a9-4c24-ac46-08954660e504",
+          "ref": "75330b5e-ca91-45e2-8414-1e6d5c66ad56",
           "length": 28,
           "cycles": 1,
           "position": 10,
           "iteration": 0,
-          "httpRequestId": "dafd5d55-de31-446e-bec3-e01e075f17ad"
+          "httpRequestId": "536f4002-a966-4f8b-b5d0-9a469635bc24"
         },
         "item": {
-          "id": "16f21999-2b8b-4726-9215-15568036afee",
+          "id": "4f8a10c2-b0dc-4c08-882d-daaeca3d499a",
           "name": "11 - POST JSON rusak",
           "request": {
             "description": {
@@ -3661,12 +3783,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "17c0cc77-5d97-4a1b-be39-67aa8a303ba2",
+                "id": "3e91ad62-c0c8-4400-a4fd-c075a7a66fd7",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "e58c61d2-cfdc-4136-a45f-688f7501c702"
+                "_lastExecutionId": "c0b3a13a-fc51-4e75-a7d6-27d43ec1187e"
               }
             }
           ]
@@ -3710,7 +3832,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "620c5bd7-68e5-499d-98d2-d9bb1ef2a5e0",
+              "value": "ad971f19-0cf4-4fc7-a86d-be678ebb09da",
               "system": true
             },
             {
@@ -3746,7 +3868,7 @@
           }
         },
         "response": {
-          "id": "bb959e63-462a-46c5-b51a-b61ab0601fb1",
+          "id": "ac76f538-4b68-499d-9455-b32db1b8bf8a",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -3768,7 +3890,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -3822,10 +3944,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 4,
+          "responseTime": 2,
           "responseSize": 37
         },
-        "id": "16f21999-2b8b-4726-9215-15568036afee",
+        "id": "4f8a10c2-b0dc-4c08-882d-daaeca3d499a",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -3835,15 +3957,15 @@
       },
       {
         "cursor": {
-          "ref": "90a8ce5b-9b23-49a4-b8f2-9dc06f20bade",
+          "ref": "1945d0ef-5262-41d1-9f79-efdeea76b02d",
           "length": 28,
           "cycles": 1,
           "position": 11,
           "iteration": 0,
-          "httpRequestId": "2381d7fa-b819-41d5-9580-5d618bb1e157"
+          "httpRequestId": "e7a2d4ab-97dc-4875-ac9a-d7be51e2069d"
         },
         "item": {
-          "id": "c232f99a-ff08-4b46-9088-ca94e04ead08",
+          "id": "a75441e2-ed2b-4e8b-9394-fc94d88adc79",
           "name": "12 - PUT produk berhasil",
           "request": {
             "description": {
@@ -3882,14 +4004,14 @@
             {
               "listen": "test",
               "script": {
-                "id": "727231eb-d29b-48b3-b697-d6846e02d8a9",
+                "id": "428eb984-fb53-4ca2-beb2-2def6f4cf8f7",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                   "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus Premium\"); });",
                   "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(3500); });"
                 ],
-                "_lastExecutionId": "566a369e-21cb-4efc-8d0f-384334504907"
+                "_lastExecutionId": "1b9c9f40-526b-418f-a6fb-d208dec9da39"
               }
             }
           ]
@@ -3933,7 +4055,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "3cb68b6b-e1b0-40f5-8433-aa01821aa648",
+              "value": "04703e37-4a43-4a48-8eab-f930fce0d78f",
               "system": true
             },
             {
@@ -3960,7 +4082,7 @@
           "method": "PUT",
           "body": {
             "mode": "raw",
-            "raw": "{\n  \"id\": 3,\n  \"name\": \"Penghapus Premium\",\n  \"price\": 3500\n}",
+            "raw": "{\n  \"id\": 6,\n  \"name\": \"Penghapus Premium\",\n  \"price\": 3500\n}",
             "options": {
               "raw": {
                 "language": "json"
@@ -3969,7 +4091,7 @@
           }
         },
         "response": {
-          "id": "f146818f-9fdc-4000-a57b-7f34a303bbc1",
+          "id": "d8e8f9e0-95ee-4224-b08c-93b52c546885",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3987,11 +4109,11 @@
             },
             {
               "key": "ETag",
-              "value": "W/\"30-giyPhr3+NWCtXGq/+qzg19k4AhQ\""
+              "value": "W/\"30-VGL0FgO4SDU7GRn9GCWdpUgt57o\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -4011,218 +4133,7 @@
               100,
               34,
               58,
-              51,
-              44,
-              34,
-              110,
-              97,
-              109,
-              101,
-              34,
-              58,
-              34,
-              80,
-              101,
-              110,
-              103,
-              104,
-              97,
-              112,
-              117,
-              115,
-              32,
-              80,
-              114,
-              101,
-              109,
-              105,
-              117,
-              109,
-              34,
-              44,
-              34,
-              112,
-              114,
-              105,
-              99,
-              101,
-              34,
-              58,
-              51,
-              53,
-              48,
-              48,
-              125
-            ]
-          },
-          "cookie": [],
-          "responseTime": 7,
-          "responseSize": 48
-        },
-        "id": "c232f99a-ff08-4b46-9088-ca94e04ead08",
-        "assertions": [
-          {
-            "assertion": "Status 200",
-            "skipped": false
-          },
-          {
-            "assertion": "Nilai name benar",
-            "skipped": false
-          },
-          {
-            "assertion": "Nilai price benar",
-            "skipped": false
-          }
-        ]
-      },
-      {
-        "cursor": {
-          "ref": "04b3d1a0-fa51-49b5-a66c-ea6d86d03a30",
-          "length": 28,
-          "cycles": 1,
-          "position": 12,
-          "iteration": 0,
-          "httpRequestId": "c0caf5d8-05d5-4dea-bcad-452b6703cc13"
-        },
-        "item": {
-          "id": "f538d5cb-b19f-4e5d-9c9a-6c9617a6f46b",
-          "name": "13 - GET hasil PUT",
-          "request": {
-            "description": {
-              "content": "Status yang diharapkan: 200. Jalankan sesuai urutan collection.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "products",
-                "{{productId}}"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "GET"
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "c9b504d5-7b95-4f6a-8a03-f3cf9fdb5472",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
-                  "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus Premium\"); });",
-                  "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(3500); });"
-                ],
-                "_lastExecutionId": "ae258620-52c9-4e98-bf40-54db060cad3f"
-              }
-            }
-          ]
-        },
-        "request": {
-          "description": {
-            "content": "Status yang diharapkan: 200. Jalankan sesuai urutan collection.",
-            "type": "text/plain"
-          },
-          "url": {
-            "protocol": "http",
-            "port": "3000",
-            "path": [
-              "products",
-              "3"
-            ],
-            "host": [
-              "localhost"
-            ],
-            "query": [],
-            "variable": []
-          },
-          "header": [
-            {
-              "key": "User-Agent",
-              "value": "PostmanRuntime/7.39.1",
-              "system": true
-            },
-            {
-              "key": "Accept",
-              "value": "*/*",
-              "system": true
-            },
-            {
-              "key": "Cache-Control",
-              "value": "no-cache",
-              "system": true
-            },
-            {
-              "key": "Postman-Token",
-              "value": "1b09bdb3-8bfe-4c04-a2ca-88b4e3e47e85",
-              "system": true
-            },
-            {
-              "key": "Host",
-              "value": "localhost:3000",
-              "system": true
-            },
-            {
-              "key": "Accept-Encoding",
-              "value": "gzip, deflate, br",
-              "system": true
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive",
-              "system": true
-            }
-          ],
-          "method": "GET"
-        },
-        "response": {
-          "id": "695cbf11-f02b-4c54-b0e7-783335a5df37",
-          "status": "OK",
-          "code": 200,
-          "header": [
-            {
-              "key": "X-Powered-By",
-              "value": "Express"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json; charset=utf-8"
-            },
-            {
-              "key": "Content-Length",
-              "value": "48"
-            },
-            {
-              "key": "ETag",
-              "value": "W/\"30-giyPhr3+NWCtXGq/+qzg19k4AhQ\""
-            },
-            {
-              "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive"
-            },
-            {
-              "key": "Keep-Alive",
-              "value": "timeout=5"
-            }
-          ],
-          "stream": {
-            "type": "Buffer",
-            "data": [
-              123,
-              34,
-              105,
-              100,
-              34,
-              58,
-              51,
+              54,
               44,
               34,
               110,
@@ -4270,7 +4181,7 @@
           "responseTime": 3,
           "responseSize": 48
         },
-        "id": "f538d5cb-b19f-4e5d-9c9a-6c9617a6f46b",
+        "id": "a75441e2-ed2b-4e8b-9394-fc94d88adc79",
         "assertions": [
           {
             "assertion": "Status 200",
@@ -4288,15 +4199,226 @@
       },
       {
         "cursor": {
-          "ref": "162b2ecf-0ec2-4238-9e2d-e7fb4201258f",
+          "ref": "39fd21e9-b9bc-45d5-b307-7dd5d0c539b2",
+          "length": 28,
+          "cycles": 1,
+          "position": 12,
+          "iteration": 0,
+          "httpRequestId": "760626b0-d65f-4849-847d-194c75075dee"
+        },
+        "item": {
+          "id": "42799ead-00de-48af-8db4-464094ec7680",
+          "name": "13 - GET hasil PUT",
+          "request": {
+            "description": {
+              "content": "Status yang diharapkan: 200. Jalankan sesuai urutan collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                "{{productId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "459953fd-8d03-4e47-bd3d-4462cc28050d",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Penghapus Premium\"); });",
+                  "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(3500); });"
+                ],
+                "_lastExecutionId": "c5665060-c39c-4195-9cd8-595204b04cae"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Status yang diharapkan: 200. Jalankan sesuai urutan collection.",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "products",
+              "6"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "5e1c1f5a-576c-4041-932f-d1d9d8145dac",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "1edd8fd8-cf43-4714-b831-3c7395c1ae66",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "48"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"30-VGL0FgO4SDU7GRn9GCWdpUgt57o\""
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              54,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              101,
+              110,
+              103,
+              104,
+              97,
+              112,
+              117,
+              115,
+              32,
+              80,
+              114,
+              101,
+              109,
+              105,
+              117,
+              109,
+              34,
+              44,
+              34,
+              112,
+              114,
+              105,
+              99,
+              101,
+              34,
+              58,
+              51,
+              53,
+              48,
+              48,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 2,
+          "responseSize": 48
+        },
+        "id": "42799ead-00de-48af-8db4-464094ec7680",
+        "assertions": [
+          {
+            "assertion": "Status 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Nilai name benar",
+            "skipped": false
+          },
+          {
+            "assertion": "Nilai price benar",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "5b2f508e-13d1-4cb8-9189-5a323b0163b5",
           "length": 28,
           "cycles": 1,
           "position": 13,
           "iteration": 0,
-          "httpRequestId": "67411d84-1ff3-432f-ac46-59bbb25821cf"
+          "httpRequestId": "11fd40ca-3f4d-4852-88c3-5e344eac1bd3"
         },
         "item": {
-          "id": "cd6bbc63-8688-4c94-9612-55437e472a14",
+          "id": "f20ed28d-07a4-4781-be21-18b6c1f0f260",
           "name": "14 - PUT tanpa ID",
           "request": {
             "description": {
@@ -4335,12 +4457,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "871398d8-4802-45ac-812d-b42db3e5d3a2",
+                "id": "28b85b95-9ce3-4499-b5a6-c450285faa6a",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "e42d2339-4fbe-46fe-ac0c-ca328d6444e6"
+                "_lastExecutionId": "13d6e54b-0f31-4ee8-bec5-a106cf247392"
               }
             }
           ]
@@ -4384,7 +4506,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "c7f6e710-3865-4c5b-a82a-5384019be0b3",
+              "value": "88beb57f-d566-4568-918e-33b3c73890d4",
               "system": true
             },
             {
@@ -4420,7 +4542,7 @@
           }
         },
         "response": {
-          "id": "6fbbfd91-76cf-44a4-a86e-85c48535d35e",
+          "id": "faa67640-9d51-4b41-82b2-5953725d2285",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -4442,7 +4564,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -4521,7 +4643,7 @@
           "responseTime": 2,
           "responseSize": 59
         },
-        "id": "cd6bbc63-8688-4c94-9612-55437e472a14",
+        "id": "f20ed28d-07a4-4781-be21-18b6c1f0f260",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -4531,15 +4653,15 @@
       },
       {
         "cursor": {
-          "ref": "27eea8c8-666d-4f70-8799-5b616189ed80",
+          "ref": "7d86805e-4824-4fe9-8472-4af6da933ae4",
           "length": 28,
           "cycles": 1,
           "position": 14,
           "iteration": 0,
-          "httpRequestId": "52bb3a05-05d0-4b31-9592-00778ceba88f"
+          "httpRequestId": "fbb35f4e-16b4-41ef-a4c1-b5fe8b7eb897"
         },
         "item": {
-          "id": "61a4ec98-9038-40a9-96cd-49fe097b34d1",
+          "id": "560b6b31-04ae-476f-9d7c-b56f334dd1db",
           "name": "15 - PUT ID string",
           "request": {
             "description": {
@@ -4578,12 +4700,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "2ce689f5-0df6-4ea2-ad38-a2871b4c875a",
+                "id": "3cfc58c1-10c5-4ac9-acaa-9cc0bc1259aa",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "7a9c7dda-5830-4765-80df-ec110c496359"
+                "_lastExecutionId": "6eb9dd09-acff-4739-a6e3-c4cc47eb4924"
               }
             }
           ]
@@ -4627,7 +4749,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "8a764914-3502-4c00-9ae2-f5d352cbd611",
+              "value": "62f31a9f-0037-4364-aa6e-cb120ff72b81",
               "system": true
             },
             {
@@ -4663,7 +4785,7 @@
           }
         },
         "response": {
-          "id": "668b56e9-a691-4ebf-abda-d11b31445846",
+          "id": "e879b249-afe3-47d6-8ba7-d5bc4ec4c02b",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -4685,7 +4807,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -4761,10 +4883,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 1,
+          "responseTime": 4,
           "responseSize": 59
         },
-        "id": "61a4ec98-9038-40a9-96cd-49fe097b34d1",
+        "id": "560b6b31-04ae-476f-9d7c-b56f334dd1db",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -4774,15 +4896,15 @@
       },
       {
         "cursor": {
-          "ref": "e522527f-b549-49c7-821f-1eb1f35c98ae",
+          "ref": "bc7d3e93-b0cb-40da-97e6-f0191bc172b8",
           "length": 28,
           "cycles": 1,
           "position": 15,
           "iteration": 0,
-          "httpRequestId": "751a2a26-3c05-4425-8bd1-3454f00b3e00"
+          "httpRequestId": "3ae46bd6-5d8f-46ff-b09e-197436fcd39e"
         },
         "item": {
-          "id": "4de57d98-4c04-4c6c-a2c5-ac21cbc9fa58",
+          "id": "03e82b8f-9a8b-4a40-9f3c-2bbf5b80db1c",
           "name": "16 - PUT nama kosong",
           "request": {
             "description": {
@@ -4821,12 +4943,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "ef60302e-2139-42a5-8c38-e5ca97ade08c",
+                "id": "c6fef169-05d7-423a-81b7-2dc25279b5bc",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "5e7eaf7d-ede1-455e-b410-370bbf44b2ea"
+                "_lastExecutionId": "bff1b546-502c-4c43-a1fa-23c0811be299"
               }
             }
           ]
@@ -4870,7 +4992,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "b7aee620-6803-4ffe-914b-26c203fd3104",
+              "value": "1bfe514f-31ff-4a86-be79-145e57e49133",
               "system": true
             },
             {
@@ -4897,7 +5019,7 @@
           "method": "PUT",
           "body": {
             "mode": "raw",
-            "raw": "{\n  \"id\": 3,\n  \"name\": \"\",\n  \"price\": 1000\n}",
+            "raw": "{\n  \"id\": 6,\n  \"name\": \"\",\n  \"price\": 1000\n}",
             "options": {
               "raw": {
                 "language": "json"
@@ -4906,7 +5028,7 @@
           }
         },
         "response": {
-          "id": "3d624981-e885-4a09-ba40-c2274f545f16",
+          "id": "e9bdbb8f-4a6c-43b8-8568-9d3aa449195b",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -4920,15 +5042,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "75"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-7BD5vKF+nPq5+CAAIksxq5PsPWc\""
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -5000,7 +5122,6 @@
               114,
               32,
               62,
-              61,
               32,
               48,
               41,
@@ -5022,9 +5143,9 @@
           },
           "cookie": [],
           "responseTime": 2,
-          "responseSize": 76
+          "responseSize": 75
         },
-        "id": "4de57d98-4c04-4c6c-a2c5-ac21cbc9fa58",
+        "id": "03e82b8f-9a8b-4a40-9f3c-2bbf5b80db1c",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -5034,15 +5155,15 @@
       },
       {
         "cursor": {
-          "ref": "567de360-17bc-4794-93cc-ddf53222c307",
+          "ref": "18f64400-dd96-4839-a3cc-d409e3490b95",
           "length": 28,
           "cycles": 1,
           "position": 16,
           "iteration": 0,
-          "httpRequestId": "339e3646-938e-4784-bf41-54ffbe931793"
+          "httpRequestId": "2a9c3ab0-9294-4abe-9d1a-1e788639da87"
         },
         "item": {
-          "id": "5648f737-b0a8-44c2-a385-5c6ba3793018",
+          "id": "0589a63f-3a4b-4488-858f-5da7fb577684",
           "name": "17 - PUT harga negatif",
           "request": {
             "description": {
@@ -5081,12 +5202,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "08c962a4-b4b5-4788-98fc-5b5d322e6339",
+                "id": "1c986670-a3b8-4736-a868-e3795965cfe7",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "c3e2fb20-5c44-48b7-9d3a-4b85534408ee"
+                "_lastExecutionId": "9cf25bd3-7509-4fe0-8c71-247674a4a694"
               }
             }
           ]
@@ -5130,7 +5251,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "bcc2e9f9-5b30-42e1-873d-3b20d9932b03",
+              "value": "2d26975c-d3eb-4cba-aa75-7b5465810e57",
               "system": true
             },
             {
@@ -5157,7 +5278,7 @@
           "method": "PUT",
           "body": {
             "mode": "raw",
-            "raw": "{\n  \"id\": 3,\n  \"name\": \"Baru\",\n  \"price\": -1\n}",
+            "raw": "{\n  \"id\": 6,\n  \"name\": \"Baru\",\n  \"price\": -1\n}",
             "options": {
               "raw": {
                 "language": "json"
@@ -5166,7 +5287,7 @@
           }
         },
         "response": {
-          "id": "4908e098-ec42-49d5-bf0d-4a60b5705d78",
+          "id": "675107a6-443d-4146-8059-0cdde52ea297",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -5180,15 +5301,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "75"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-7BD5vKF+nPq5+CAAIksxq5PsPWc\""
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -5260,7 +5381,6 @@
               114,
               32,
               62,
-              61,
               32,
               48,
               41,
@@ -5282,9 +5402,9 @@
           },
           "cookie": [],
           "responseTime": 1,
-          "responseSize": 76
+          "responseSize": 75
         },
-        "id": "5648f737-b0a8-44c2-a385-5c6ba3793018",
+        "id": "0589a63f-3a4b-4488-858f-5da7fb577684",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -5294,15 +5414,15 @@
       },
       {
         "cursor": {
-          "ref": "e86ab8a6-252b-478f-ab1e-5536876faac6",
+          "ref": "fda11dac-7b62-4b36-83a0-835681343d38",
           "length": 28,
           "cycles": 1,
           "position": 17,
           "iteration": 0,
-          "httpRequestId": "f804203f-003e-4a1e-b49d-48efbc49f85e"
+          "httpRequestId": "01d8246b-ee23-4792-89b6-dc6883b988a7"
         },
         "item": {
-          "id": "c05fc42b-ac07-46eb-ad85-cca799ebca75",
+          "id": "890f6154-65ce-4fe2-8736-2c1ece902839",
           "name": "18 - PUT field harga kurang",
           "request": {
             "description": {
@@ -5341,12 +5461,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "a4a4517e-2a0b-4123-aced-6e9b570cce9d",
+                "id": "3e7d9f1f-10a1-4a3d-a6c5-0b40bb809355",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "1e398f5d-47b0-4f55-9192-74e3ec276e2c"
+                "_lastExecutionId": "05df1491-10be-423d-9140-cbc72ce3f92e"
               }
             }
           ]
@@ -5390,7 +5510,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "9741010e-4f51-47f2-8a73-d942ae251527",
+              "value": "c3b8dda8-ce7a-421b-a7a4-7397a476b7a0",
               "system": true
             },
             {
@@ -5417,7 +5537,7 @@
           "method": "PUT",
           "body": {
             "mode": "raw",
-            "raw": "{\n  \"id\": 3,\n  \"name\": \"Baru\"\n}",
+            "raw": "{\n  \"id\": 6,\n  \"name\": \"Baru\"\n}",
             "options": {
               "raw": {
                 "language": "json"
@@ -5426,7 +5546,7 @@
           }
         },
         "response": {
-          "id": "838c36a9-f4b8-4eaa-9241-a3cd5264d56b",
+          "id": "7644b382-7835-4ac2-99fc-d3d659d1403e",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -5440,15 +5560,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "75"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-7BD5vKF+nPq5+CAAIksxq5PsPWc\""
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -5520,7 +5640,6 @@
               114,
               32,
               62,
-              61,
               32,
               48,
               41,
@@ -5541,10 +5660,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 2,
-          "responseSize": 76
+          "responseTime": 1,
+          "responseSize": 75
         },
-        "id": "c05fc42b-ac07-46eb-ad85-cca799ebca75",
+        "id": "890f6154-65ce-4fe2-8736-2c1ece902839",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -5554,15 +5673,15 @@
       },
       {
         "cursor": {
-          "ref": "0b193940-e72c-40e6-8c27-b9fcfabc66d1",
+          "ref": "62c636ca-bf2a-4362-9391-e66d15f1ae7d",
           "length": 28,
           "cycles": 1,
           "position": 18,
           "iteration": 0,
-          "httpRequestId": "89da63cf-7f7b-4589-ad38-b630e913ba41"
+          "httpRequestId": "47868f36-e849-4629-b861-bd63411fb7f0"
         },
         "item": {
-          "id": "bc9749ab-2963-4f41-bb68-55438e5fe4c9",
+          "id": "9458c049-865c-4f3e-b107-e92f496d83f4",
           "name": "19 - PUT ID tidak ditemukan",
           "request": {
             "description": {
@@ -5601,12 +5720,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "a819984d-efbb-4f81-9c36-0e42178fe540",
+                "id": "2d314ed0-4a0b-4219-b8cd-5e1608b2e18e",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
                 ],
-                "_lastExecutionId": "9fe7ee55-a05a-4b59-9aaf-7146810fd192"
+                "_lastExecutionId": "b6bf53f5-83b0-42d1-b16e-44be31167d0f"
               }
             }
           ]
@@ -5650,7 +5769,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "370a95b6-3c92-4b7e-bd25-a0c4c0fc3c3c",
+              "value": "b647048a-8600-43e0-a022-fb1d03a278f4",
               "system": true
             },
             {
@@ -5686,7 +5805,7 @@
           }
         },
         "response": {
-          "id": "17522612-c47d-42b0-8eb2-f739733ffcdf",
+          "id": "751f6723-974e-4ed2-aa21-5ad91709b85c",
           "status": "Not Found",
           "code": 404,
           "header": [
@@ -5708,7 +5827,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -5761,10 +5880,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 9,
+          "responseTime": 5,
           "responseSize": 36
         },
-        "id": "bc9749ab-2963-4f41-bb68-55438e5fe4c9",
+        "id": "9458c049-865c-4f3e-b107-e92f496d83f4",
         "assertions": [
           {
             "assertion": "Status 404",
@@ -5774,15 +5893,15 @@
       },
       {
         "cursor": {
-          "ref": "253d9e3e-acc1-430c-91b2-ef71a135cbda",
+          "ref": "10a870ca-ab1e-4f8c-80d0-a451e74b6c92",
           "length": 28,
           "cycles": 1,
           "position": 19,
           "iteration": 0,
-          "httpRequestId": "5bb8646e-4960-4d1d-8948-65c18f849f0a"
+          "httpRequestId": "0b0bcb0b-1364-4e24-a776-6d8f21d799c8"
         },
         "item": {
-          "id": "e83648cb-d0e4-4fcd-ad51-6e7c4f28ffe5",
+          "id": "f92ad682-5643-4f9a-afcb-2d7d1035eaef",
           "name": "20 - DELETE ID tidak valid",
           "request": {
             "description": {
@@ -5807,12 +5926,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "6450823e-cf32-4312-991b-ccc53edf8c7d",
+                "id": "38ab3ebd-a59b-4f63-a224-eaf9594afa85",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "3c088158-54a3-4ec7-9668-69cd390caa1d"
+                "_lastExecutionId": "899c3787-82fb-4aa8-bc6f-5f015cd5354d"
               }
             }
           ]
@@ -5853,7 +5972,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "6c851815-fcc5-48ce-be1c-db48b7c2b193",
+              "value": "3221f41e-9e7b-4e4e-8d50-78c3d7d8cffc",
               "system": true
             },
             {
@@ -5875,7 +5994,7 @@
           "method": "DELETE"
         },
         "response": {
-          "id": "7171e62c-923f-4a16-ade9-87625b722127",
+          "id": "251a7f8f-8317-471b-aef5-f7b4111086ef",
           "status": "Bad Request",
           "code": 400,
           "header": [
@@ -5897,7 +6016,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -5963,10 +6082,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 2,
+          "responseTime": 1,
           "responseSize": 49
         },
-        "id": "e83648cb-d0e4-4fcd-ad51-6e7c4f28ffe5",
+        "id": "f92ad682-5643-4f9a-afcb-2d7d1035eaef",
         "assertions": [
           {
             "assertion": "Status 400",
@@ -5976,15 +6095,15 @@
       },
       {
         "cursor": {
-          "ref": "72e8363d-3c1b-4f92-b6c7-81d5c04e7891",
+          "ref": "43caecc6-7501-409c-a39d-3faae9f859cd",
           "length": 28,
           "cycles": 1,
           "position": 20,
           "iteration": 0,
-          "httpRequestId": "1ce3042f-8d9a-4a7f-bd0d-fb5fc6e72305"
+          "httpRequestId": "7ab1a627-8bb7-4c0b-b5c0-150f171819cc"
         },
         "item": {
-          "id": "6989ae41-d19b-4701-9678-8af8994ebe93",
+          "id": "51b3066c-2804-40dc-84af-cfb58c88726a",
           "name": "21 - DELETE ID tidak ditemukan",
           "request": {
             "description": {
@@ -6009,12 +6128,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "9b7d1040-5bfa-4dd0-b05a-c11d91c2ef87",
+                "id": "aedd0bc3-d538-474a-b029-575f6c4ef6a6",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
                 ],
-                "_lastExecutionId": "6f700917-65a2-48ee-ba5b-ce5fadcebecd"
+                "_lastExecutionId": "5408650d-f5f3-49d5-bb93-34e6c11a267e"
               }
             }
           ]
@@ -6055,7 +6174,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "60b21eec-01c3-4f6d-9869-0c3bdee12c4c",
+              "value": "b980c29c-e5e4-4138-ada1-afa6919b3284",
               "system": true
             },
             {
@@ -6077,7 +6196,7 @@
           "method": "DELETE"
         },
         "response": {
-          "id": "3b723672-24a5-4f9c-8490-7ee922b67bf2",
+          "id": "879b9800-b984-4b15-8abc-a1f8251329ab",
           "status": "Not Found",
           "code": 404,
           "header": [
@@ -6099,7 +6218,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -6152,10 +6271,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 4,
+          "responseTime": 2,
           "responseSize": 36
         },
-        "id": "6989ae41-d19b-4701-9678-8af8994ebe93",
+        "id": "51b3066c-2804-40dc-84af-cfb58c88726a",
         "assertions": [
           {
             "assertion": "Status 404",
@@ -6165,15 +6284,15 @@
       },
       {
         "cursor": {
-          "ref": "c9fd6050-50e9-4544-9f98-8ede4301e14e",
+          "ref": "9137bcca-c5c2-423e-8f8a-194bc560599f",
           "length": 28,
           "cycles": 1,
           "position": 21,
           "iteration": 0,
-          "httpRequestId": "d7ad37ff-9e39-4f55-98ef-9ef5f6cd2219"
+          "httpRequestId": "39ec8464-769e-4bf8-9eda-1d6e2eda7e4c"
         },
         "item": {
-          "id": "c5099c1a-ec62-4b39-9c8f-c0c5a73b6a18",
+          "id": "15e7d6d3-5394-49e0-93a5-755b1bc24137",
           "name": "22 - DELETE produk berhasil",
           "request": {
             "description": {
@@ -6198,12 +6317,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "0796ce4e-43f9-413a-ab54-66ab436b8204",
+                "id": "d5b9186a-a79f-4c15-b74a-1d637910df68",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
                 ],
-                "_lastExecutionId": "215ae313-3616-47f5-ba0e-9df951ff8e60"
+                "_lastExecutionId": "581aff70-ff91-4e4d-a894-b4263b64948a"
               }
             }
           ]
@@ -6218,7 +6337,7 @@
             "port": "3000",
             "path": [
               "products",
-              "3"
+              "6"
             ],
             "host": [
               "localhost"
@@ -6244,7 +6363,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "3fa1bd93-8fd6-4e4d-80f7-2fde7fe2be8c",
+              "value": "302339bf-723b-4cab-818a-05cfe6c64bb1",
               "system": true
             },
             {
@@ -6266,7 +6385,7 @@
           "method": "DELETE"
         },
         "response": {
-          "id": "153676c7-26aa-459d-bd62-a65621045909",
+          "id": "eced8b5f-4b5c-4c86-9f11-6c3999e4a134",
           "status": "OK",
           "code": 200,
           "header": [
@@ -6284,11 +6403,11 @@
             },
             {
               "key": "ETag",
-              "value": "W/\"5d-+xLl+UdFX7GL0h4Nox+zlIIgkss\""
+              "value": "W/\"5d-ydoIDG9Qrmi9EoEAqfGpzR8DCZ0\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -6352,7 +6471,7 @@
               100,
               34,
               58,
-              51,
+              54,
               44,
               34,
               110,
@@ -6398,10 +6517,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 4,
+          "responseTime": 2,
           "responseSize": 93
         },
-        "id": "c5099c1a-ec62-4b39-9c8f-c0c5a73b6a18",
+        "id": "15e7d6d3-5394-49e0-93a5-755b1bc24137",
         "assertions": [
           {
             "assertion": "Status 200",
@@ -6411,15 +6530,15 @@
       },
       {
         "cursor": {
-          "ref": "8a1d12db-bff2-4057-bb4f-94142ec69ece",
+          "ref": "68988885-f2c2-4ae2-8bfb-7874826e34e1",
           "length": 28,
           "cycles": 1,
           "position": 22,
           "iteration": 0,
-          "httpRequestId": "a7c72f72-0972-4be6-a5ec-b7b0e15c0b59"
+          "httpRequestId": "4eb72432-6cfc-48f2-a63f-47b1ff27519a"
         },
         "item": {
-          "id": "5627d6d5-ed4b-4940-b603-f68275fd8784",
+          "id": "9ce97bfb-831a-44a8-9aea-91449066749d",
           "name": "23 - GET produk setelah dihapus",
           "request": {
             "description": {
@@ -6444,12 +6563,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "0705c914-26f6-4771-b43f-ec552f7e2e55",
+                "id": "b7152471-6510-47ca-9e29-6a934974dbf5",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
                 ],
-                "_lastExecutionId": "44278704-2421-4a8a-8295-49e0d35f4fcd"
+                "_lastExecutionId": "000fbd14-e600-44a7-8d58-2482b3cb6219"
               }
             }
           ]
@@ -6464,7 +6583,7 @@
             "port": "3000",
             "path": [
               "products",
-              "3"
+              "6"
             ],
             "host": [
               "localhost"
@@ -6490,7 +6609,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "16d8af69-7d28-4cb3-9139-8025de67ec01",
+              "value": "e88c02d4-5a64-4898-a1e1-ded7fc7e72f8",
               "system": true
             },
             {
@@ -6512,7 +6631,7 @@
           "method": "GET"
         },
         "response": {
-          "id": "87ba9c68-fa09-4236-abff-62da4b371bb3",
+          "id": "9f6a400f-be90-436e-b7e3-e01373d70ffb",
           "status": "Not Found",
           "code": 404,
           "header": [
@@ -6534,7 +6653,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -6587,10 +6706,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 2,
+          "responseTime": 1,
           "responseSize": 36
         },
-        "id": "5627d6d5-ed4b-4940-b603-f68275fd8784",
+        "id": "9ce97bfb-831a-44a8-9aea-91449066749d",
         "assertions": [
           {
             "assertion": "Status 404",
@@ -6600,15 +6719,15 @@
       },
       {
         "cursor": {
-          "ref": "0d514914-197f-47a4-b0e1-f5d183294f1e",
+          "ref": "a5d754aa-29f9-40f9-b2c8-11368a84d1c5",
           "length": 28,
           "cycles": 1,
           "position": 23,
           "iteration": 0,
-          "httpRequestId": "e92588fc-5b64-4b0c-826b-7f5b9ac89364"
+          "httpRequestId": "cbaeb3b9-2b4f-43b0-9649-8ce14ff480a1"
         },
         "item": {
-          "id": "484c4e82-6097-44ff-871b-be88d4e4c095",
+          "id": "eb3fb912-07b8-425f-a223-eae256b9c0da",
           "name": "24 - DELETE ulang produk",
           "request": {
             "description": {
@@ -6633,12 +6752,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "d9c9b5a9-5b8e-4501-a75b-c4297081fff2",
+                "id": "2e5c8239-9998-4a5e-9678-0df439adcc56",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
                 ],
-                "_lastExecutionId": "d961f5b8-fef6-45bd-98cf-a3a5b0ff5f1e"
+                "_lastExecutionId": "760738a8-a3d3-4fc0-a57f-0830e88665af"
               }
             }
           ]
@@ -6653,7 +6772,7 @@
             "port": "3000",
             "path": [
               "products",
-              "3"
+              "6"
             ],
             "host": [
               "localhost"
@@ -6679,7 +6798,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "907afc91-856b-481e-92d6-5dcede42d15b",
+              "value": "7562e421-06f3-4e1c-9120-e959c199758e",
               "system": true
             },
             {
@@ -6701,7 +6820,7 @@
           "method": "DELETE"
         },
         "response": {
-          "id": "a09b3c1d-fc36-47d0-ba94-a34160c2b24a",
+          "id": "b2c0c57a-e7e8-4dd9-8e05-5a2b3580e550",
           "status": "Not Found",
           "code": 404,
           "header": [
@@ -6723,7 +6842,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:42 GMT"
             },
             {
               "key": "Connection",
@@ -6776,10 +6895,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 3,
+          "responseTime": 1,
           "responseSize": 36
         },
-        "id": "484c4e82-6097-44ff-871b-be88d4e4c095",
+        "id": "eb3fb912-07b8-425f-a223-eae256b9c0da",
         "assertions": [
           {
             "assertion": "Status 404",
@@ -6789,19 +6908,19 @@
       },
       {
         "cursor": {
-          "ref": "0733892f-b3cb-4d12-be39-7c9dd5eba5ba",
+          "ref": "d1a10cb8-4db6-4c08-8227-401b6fc94b80",
           "length": 28,
           "cycles": 1,
           "position": 24,
           "iteration": 0,
-          "httpRequestId": "e4fa362a-4900-44e4-9daa-cb61c7ad4509"
+          "httpRequestId": "e331cc36-55ba-45f0-96ae-4492baee60db"
         },
         "item": {
-          "id": "2e98b6e5-962f-409f-8999-4d0e33c64417",
-          "name": "25 - POST harga nol valid",
+          "id": "3e201ec2-1de4-4215-9fc9-18f4d353c98f",
+          "name": "25 - POST harga nol ditolak",
           "request": {
             "description": {
-              "content": "Status yang diharapkan: 201. Jalankan sesuai urutan collection.",
+              "content": "Harga harus lebih dari 0 sesuai tampilan tugas 3.",
               "type": "text/plain"
             },
             "url": {
@@ -6836,22 +6955,19 @@
             {
               "listen": "test",
               "script": {
-                "id": "e56a3215-d759-443d-a45c-1d108b6d1bfc",
+                "id": "f89ee315-6605-42f2-8722-d8148d552e1b",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test('Status 201', function () { pm.response.to.have.status(201); });",
-                  "if (pm.response.code === 201) pm.collectionVariables.set('freeProductId', pm.response.json().id);",
-                  "pm.test('Nilai name benar', function () { pm.expect(pm.response.json().name).to.eql(\"Sampel Gratis\"); });",
-                  "pm.test('Nilai price benar', function () { pm.expect(pm.response.json().price).to.eql(0); });"
+                  "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
                 ],
-                "_lastExecutionId": "30d58f90-8b2b-494a-b374-5708c6c3274f"
+                "_lastExecutionId": "bdff2751-e32c-4d2d-860f-154f511af921"
               }
             }
           ]
         },
         "request": {
           "description": {
-            "content": "Status yang diharapkan: 201. Jalankan sesuai urutan collection.",
+            "content": "Harga harus lebih dari 0 sesuai tampilan tugas 3.",
             "type": "text/plain"
           },
           "url": {
@@ -6888,7 +7004,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "b266d15e-afaa-4256-9a34-0b16021f9ac2",
+              "value": "809707a3-c7c0-48a3-b261-86ed2873019b",
               "system": true
             },
             {
@@ -6924,9 +7040,9 @@
           }
         },
         "response": {
-          "id": "37574371-7578-402e-a226-92477660b2f4",
-          "status": "Created",
-          "code": 201,
+          "id": "4c667833-279c-4e3e-bb43-c04a14b12102",
+          "status": "Bad Request",
+          "code": 400,
           "header": [
             {
               "key": "X-Powered-By",
@@ -6938,217 +7054,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "41"
+              "value": "75"
             },
             {
               "key": "ETag",
-              "value": "W/\"29-m+e8p4pP4bxt0hUWHx1V3/xUYRg\""
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive"
-            },
-            {
-              "key": "Keep-Alive",
-              "value": "timeout=5"
-            }
-          ],
-          "stream": {
-            "type": "Buffer",
-            "data": [
-              123,
-              34,
-              105,
-              100,
-              34,
-              58,
-              52,
-              44,
-              34,
-              110,
-              97,
-              109,
-              101,
-              34,
-              58,
-              34,
-              83,
-              97,
-              109,
-              112,
-              101,
-              108,
-              32,
-              71,
-              114,
-              97,
-              116,
-              105,
-              115,
-              34,
-              44,
-              34,
-              112,
-              114,
-              105,
-              99,
-              101,
-              34,
-              58,
-              48,
-              125
-            ]
-          },
-          "cookie": [],
-          "responseTime": 5,
-          "responseSize": 41
-        },
-        "id": "2e98b6e5-962f-409f-8999-4d0e33c64417",
-        "assertions": [
-          {
-            "assertion": "Status 201",
-            "skipped": false
-          },
-          {
-            "assertion": "Nilai name benar",
-            "skipped": false
-          },
-          {
-            "assertion": "Nilai price benar",
-            "skipped": false
-          }
-        ]
-      },
-      {
-        "cursor": {
-          "ref": "25f97118-f9c3-4dd7-b18e-7a3575f1f6ae",
-          "length": 28,
-          "cycles": 1,
-          "position": 25,
-          "iteration": 0,
-          "httpRequestId": "67e67603-f4a3-4a7e-89f8-84f7474084d3"
-        },
-        "item": {
-          "id": "3116b9fd-9945-4cb6-9b94-41b79041276b",
-          "name": "26 - DELETE produk harga nol",
-          "request": {
-            "description": {
-              "content": "Status yang diharapkan: 200. Jalankan sesuai urutan collection.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "products",
-                "{{freeProductId}}"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "DELETE"
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "56d7eef4-57ec-4928-ac01-f2522ff622df",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test('Status 200', function () { pm.response.to.have.status(200); });"
-                ],
-                "_lastExecutionId": "a146648e-38b4-4828-a502-17dca84fa1d8"
-              }
-            }
-          ]
-        },
-        "request": {
-          "description": {
-            "content": "Status yang diharapkan: 200. Jalankan sesuai urutan collection.",
-            "type": "text/plain"
-          },
-          "url": {
-            "protocol": "http",
-            "port": "3000",
-            "path": [
-              "products",
-              "4"
-            ],
-            "host": [
-              "localhost"
-            ],
-            "query": [],
-            "variable": []
-          },
-          "header": [
-            {
-              "key": "User-Agent",
-              "value": "PostmanRuntime/7.39.1",
-              "system": true
-            },
-            {
-              "key": "Accept",
-              "value": "*/*",
-              "system": true
-            },
-            {
-              "key": "Cache-Control",
-              "value": "no-cache",
-              "system": true
-            },
-            {
-              "key": "Postman-Token",
-              "value": "b67d461e-e4d0-43d3-8b55-9779a7da2650",
-              "system": true
-            },
-            {
-              "key": "Host",
-              "value": "localhost:3000",
-              "system": true
-            },
-            {
-              "key": "Accept-Encoding",
-              "value": "gzip, deflate, br",
-              "system": true
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive",
-              "system": true
-            }
-          ],
-          "method": "DELETE"
-        },
-        "response": {
-          "id": "42fd8403-cd63-46f6-87db-472edb4de1ab",
-          "status": "OK",
-          "code": 200,
-          "header": [
-            {
-              "key": "X-Powered-By",
-              "value": "Express"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json; charset=utf-8"
-            },
-            {
-              "key": "Content-Length",
-              "value": "86"
-            },
-            {
-              "key": "ETag",
-              "value": "W/\"56-4Txj6mjD/o62PUpqRRHcZGWGnDo\""
-            },
-            {
-              "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:43 GMT"
             },
             {
               "key": "Connection",
@@ -7174,105 +7088,353 @@
               34,
               58,
               34,
-              80,
-              114,
-              111,
-              100,
-              117,
-              107,
-              32,
-              98,
-              101,
-              114,
-              104,
-              97,
-              115,
-              105,
-              108,
-              32,
-              100,
-              105,
-              104,
-              97,
-              112,
-              117,
-              115,
-              34,
-              44,
-              34,
-              100,
-              97,
-              116,
-              97,
-              34,
-              58,
-              123,
-              34,
-              105,
-              100,
-              34,
-              58,
-              52,
-              44,
-              34,
               110,
               97,
               109,
               101,
-              34,
-              58,
-              34,
-              83,
-              97,
-              109,
-              112,
-              101,
-              108,
               32,
-              71,
+              40,
+              115,
+              116,
               114,
-              97,
+              105,
+              110,
+              103,
+              32,
               116,
               105,
+              100,
+              97,
+              107,
+              32,
+              107,
+              111,
               115,
-              34,
-              44,
-              34,
+              111,
+              110,
+              103,
+              41,
+              32,
+              100,
+              97,
+              110,
+              32,
               112,
               114,
               105,
               99,
               101,
-              34,
-              58,
+              32,
+              40,
+              110,
+              117,
+              109,
+              98,
+              101,
+              114,
+              32,
+              62,
+              32,
               48,
-              125,
+              41,
+              32,
+              119,
+              97,
+              106,
+              105,
+              98,
+              32,
+              100,
+              105,
+              105,
+              115,
+              105,
+              34,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 9,
-          "responseSize": 86
+          "responseTime": 1,
+          "responseSize": 75
         },
-        "id": "3116b9fd-9945-4cb6-9b94-41b79041276b",
+        "id": "3e201ec2-1de4-4215-9fc9-18f4d353c98f",
         "assertions": [
           {
-            "assertion": "Status 200",
+            "assertion": "Status 400",
             "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "b17d45a6-f8ff-4072-830b-78338cbd2360",
+          "ref": "a94974cb-bf50-4257-b993-1aa6d0d69172",
+          "length": 28,
+          "cycles": 1,
+          "position": 25,
+          "iteration": 0,
+          "httpRequestId": "723d2ada-37bc-45e2-a38e-29a9610725c8"
+        },
+        "item": {
+          "id": "073b29bc-b0d2-4c9a-89d5-bb1f963d3974",
+          "name": "26 - PUT harga nol ditolak",
+          "request": {
+            "description": {
+              "content": "Harga harus lebih dari 0 sesuai tampilan tugas 3.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 1,\n  \"name\": \"Buku\",\n  \"price\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f1f352d8-7d61-48f1-ac9b-570be9c72886",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 400', function () { pm.response.to.have.status(400); });"
+                ],
+                "_lastExecutionId": "0c13c07e-6707-4fd3-998c-9cdbf8e5855c"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Harga harus lebih dari 0 sesuai tampilan tugas 3.",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "products"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "6cf2769f-b984-4512-940c-29eccc7611a7",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "45",
+              "system": true
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"id\": 1,\n  \"name\": \"Buku\",\n  \"price\": 0\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "21d15322-c4dc-48aa-8dfb-83c0f27e4267",
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "75"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"4b-TaiJJJ5RxKb0ycESXA4YpXFa/p4\""
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 14 Nov 2026 13:04:43 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              110,
+              97,
+              109,
+              101,
+              32,
+              40,
+              115,
+              116,
+              114,
+              105,
+              110,
+              103,
+              32,
+              116,
+              105,
+              100,
+              97,
+              107,
+              32,
+              107,
+              111,
+              115,
+              111,
+              110,
+              103,
+              41,
+              32,
+              100,
+              97,
+              110,
+              32,
+              112,
+              114,
+              105,
+              99,
+              101,
+              32,
+              40,
+              110,
+              117,
+              109,
+              98,
+              101,
+              114,
+              32,
+              62,
+              32,
+              48,
+              41,
+              32,
+              119,
+              97,
+              106,
+              105,
+              98,
+              32,
+              100,
+              105,
+              105,
+              115,
+              105,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 1,
+          "responseSize": 75
+        },
+        "id": "073b29bc-b0d2-4c9a-89d5-bb1f963d3974",
+        "assertions": [
+          {
+            "assertion": "Status 400",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "5c672c90-5606-4028-9ed4-89d4f6596a8b",
           "length": 28,
           "cycles": 1,
           "position": 26,
           "iteration": 0,
-          "httpRequestId": "2731e78b-bd94-4d57-a6da-591b8b697405"
+          "httpRequestId": "6544b367-f1dd-48b6-b0a2-39945fa9c7c5"
         },
         "item": {
-          "id": "633a872d-b1a5-4fc2-84c8-22db8cdc8da9",
+          "id": "25c52619-c58f-446e-bf6a-2dc747e0eaca",
           "name": "27 - GET daftar akhir",
           "request": {
             "description": {
@@ -7296,13 +7458,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "237283db-2113-42d6-b5fb-50b46e18b862",
+                "id": "65dfc4b9-a898-4639-8d01-6ce939978a7a",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
                   "pm.test('Response berupa array', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
                 ],
-                "_lastExecutionId": "919a4ce6-ae04-4b2e-840a-de62ec04f57b"
+                "_lastExecutionId": "ca043f4f-de26-472a-9c6d-1244695fae50"
               }
             }
           ]
@@ -7342,7 +7504,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "82a86d45-eda8-4792-a655-be1f67ccce1b",
+              "value": "dd023d6f-2c56-4560-b6a1-7133dd22f9a7",
               "system": true
             },
             {
@@ -7364,7 +7526,7 @@
           "method": "GET"
         },
         "response": {
-          "id": "b2bf4642-1ffd-4cf3-af35-1e587f8e3df3",
+          "id": "e19cd49d-a388-4578-b5a0-4464796e8afd",
           "status": "OK",
           "code": 200,
           "header": [
@@ -7378,15 +7540,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "76"
+              "value": "196"
             },
             {
               "key": "ETag",
-              "value": "W/\"4c-uFXLLQbohGea6vnPxTWuWUbADdE\""
+              "value": "W/\"c4-rwM+yIz4caLe7zeFGS5CDWTv/QI\""
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:43 GMT"
             },
             {
               "key": "Connection",
@@ -7475,14 +7637,134 @@
               48,
               48,
               125,
+              44,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              51,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              112,
+              105,
+              100,
+              111,
+              108,
+              34,
+              44,
+              34,
+              112,
+              114,
+              105,
+              99,
+              101,
+              34,
+              58,
+              56,
+              48,
+              48,
+              48,
+              125,
+              44,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              52,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              101,
+              110,
+              103,
+              103,
+              97,
+              114,
+              105,
+              115,
+              34,
+              44,
+              34,
+              112,
+              114,
+              105,
+              99,
+              101,
+              34,
+              58,
+              54,
+              48,
+              48,
+              48,
+              125,
+              44,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              53,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              80,
+              101,
+              110,
+              103,
+              104,
+              97,
+              112,
+              117,
+              115,
+              34,
+              44,
+              34,
+              112,
+              114,
+              105,
+              99,
+              101,
+              34,
+              58,
+              51,
+              48,
+              48,
+              48,
+              125,
               93
             ]
           },
           "cookie": [],
-          "responseTime": 3,
-          "responseSize": 76
+          "responseTime": 2,
+          "responseSize": 196
         },
-        "id": "633a872d-b1a5-4fc2-84c8-22db8cdc8da9",
+        "id": "25c52619-c58f-446e-bf6a-2dc747e0eaca",
         "assertions": [
           {
             "assertion": "Status 200",
@@ -7496,15 +7778,15 @@
       },
       {
         "cursor": {
-          "ref": "48ead763-3536-430a-bf82-4efacfca629e",
+          "ref": "43079507-84d7-4fdc-8669-318e19fffec1",
           "length": 28,
           "cycles": 1,
           "position": 27,
           "iteration": 0,
-          "httpRequestId": "a8b80389-4045-4929-b4ef-f1f7ace023db"
+          "httpRequestId": "223745ba-500c-4aa2-80fb-71934e300864"
         },
         "item": {
-          "id": "0b08906a-e6fb-4577-a042-006142706653",
+          "id": "271ccf37-ff3e-443b-89f1-f56110a311be",
           "name": "28 - Endpoint tidak tersedia",
           "request": {
             "description": {
@@ -7528,12 +7810,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "80af3504-80c6-43ef-b9cd-4ffa9d7aee03",
+                "id": "4a73f8f7-430e-48e7-8c53-cab0d0ac9530",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
                 ],
-                "_lastExecutionId": "073e8933-5f5f-4e06-93b1-f7f85a5985e5"
+                "_lastExecutionId": "5208294f-036b-4f07-93dd-9aed3619b0a3"
               }
             }
           ]
@@ -7573,7 +7855,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "e6f7baad-25dc-4226-9257-33fa18de56d3",
+              "value": "e9ff168e-a24b-4a1e-ba59-35a8eeb67b16",
               "system": true
             },
             {
@@ -7595,7 +7877,7 @@
           "method": "GET"
         },
         "response": {
-          "id": "f7972540-bd6d-40a8-92be-5d4b3b147b81",
+          "id": "d43b47b7-3835-49dd-85e7-aa812049f587",
           "status": "Not Found",
           "code": 404,
           "header": [
@@ -7617,7 +7899,7 @@
             },
             {
               "key": "Date",
-              "value": "Sat, 14 Nov 2026 12:16:42 GMT"
+              "value": "Sat, 14 Nov 2026 13:04:43 GMT"
             },
             {
               "key": "Connection",
@@ -7675,7 +7957,7 @@
           "responseTime": 2,
           "responseSize": 38
         },
-        "id": "0b08906a-e6fb-4577-a042-006142706653",
+        "id": "271ccf37-ff3e-443b-89f1-f56110a311be",
         "assertions": [
           {
             "assertion": "Status 404",
@@ -7685,7 +7967,7 @@
       }
     ],
     "transfers": {
-      "responseTotal": 1587
+      "responseTotal": 1843
     },
     "failures": [],
     "error": null

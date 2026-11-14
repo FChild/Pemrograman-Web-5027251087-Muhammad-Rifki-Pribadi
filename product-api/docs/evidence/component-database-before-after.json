@@ -1,0 +1,190 @@
+{
+  "post": {
+    "before": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      }
+    ],
+    "after": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      },
+      {
+        "id": 6,
+        "name": "Stabilo Uji",
+        "price": 9000
+      }
+    ]
+  },
+  "put": {
+    "before": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      },
+      {
+        "id": 6,
+        "name": "Stabilo Uji",
+        "price": 9000
+      }
+    ],
+    "after": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      },
+      {
+        "id": 6,
+        "name": "Stabilo Premium",
+        "price": 12000
+      }
+    ]
+  },
+  "delete": {
+    "before": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      },
+      {
+        "id": 6,
+        "name": "Stabilo Premium",
+        "price": 12000
+      }
+    ],
+    "after": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      }
+    ]
+  }
+}

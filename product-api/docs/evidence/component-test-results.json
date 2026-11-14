@@ -1,0 +1,81 @@
+{
+  "executedAt": "2026-11-14T13:04:01.021Z",
+  "environment": "JSDOM + React Testing Library + Express HTTP + SQLite sementara",
+  "total": 18,
+  "passed": 18,
+  "results": [
+    {
+      "name": "GET: komponen menampilkan 5 produk dari API",
+      "passed": true
+    },
+    {
+      "name": "Pencarian nama tidak peka huruf besar/kecil",
+      "passed": true
+    },
+    {
+      "name": "Pencarian tanpa hasil menampilkan empty state",
+      "passed": true
+    },
+    {
+      "name": "Form kosong ditolak tanpa menulis database",
+      "passed": true
+    },
+    {
+      "name": "Harga nol ditolak pada form",
+      "passed": true
+    },
+    {
+      "name": "Harga negatif ditolak pada form",
+      "passed": true
+    },
+    {
+      "name": "Batal tambah menutup dialog tanpa menyimpan",
+      "passed": true
+    },
+    {
+      "name": "API gagal: pesan tampil, input tetap, database tidak berubah (simulasi respons)",
+      "passed": true
+    },
+    {
+      "name": "Tombol simpan dinonaktifkan selama request berjalan",
+      "passed": true
+    },
+    {
+      "name": "POST lewat handler React menyimpan produk ke SQLite",
+      "passed": true
+    },
+    {
+      "name": "Edit membuka data produk yang dipilih melalui props",
+      "passed": true
+    },
+    {
+      "name": "Batal edit tidak mengubah database",
+      "passed": true
+    },
+    {
+      "name": "PUT melalui handler memperbarui nama/harga tanpa mengganti ID",
+      "passed": true
+    },
+    {
+      "name": "Muat ulang komponen membaca perubahan yang tersimpan",
+      "passed": true
+    },
+    {
+      "name": "Batal hapus mempertahankan produk",
+      "passed": true
+    },
+    {
+      "name": "DELETE setelah konfirmasi menghapus record dari SQLite",
+      "passed": true
+    },
+    {
+      "name": "Gagal memuat dapat dicoba ulang (simulasi respons)",
+      "passed": true
+    },
+    {
+      "name": "Database kosong menampilkan empty state",
+      "passed": true
+    }
+  ],
+  "limitations": "Bukan browser visual; native dialog showModal/close dipolyfill. Screenshot, layout, focus trap, dan Escape browser belum diverifikasi."
+}

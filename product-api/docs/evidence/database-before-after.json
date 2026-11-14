@@ -10,6 +10,21 @@
         "id": 2,
         "name": "Pulpen",
         "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
       }
     ],
     "after": [
@@ -25,6 +40,21 @@
       },
       {
         "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      },
+      {
+        "id": 6,
         "name": "Penghapus",
         "price": 2000
       }
@@ -44,6 +74,21 @@
       },
       {
         "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      },
+      {
+        "id": 6,
         "name": "Penghapus",
         "price": 2000
       }
@@ -61,6 +106,21 @@
       },
       {
         "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      },
+      {
+        "id": 6,
         "name": "Penghapus Premium",
         "price": 3500
       }
@@ -80,6 +140,21 @@
       },
       {
         "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
+      },
+      {
+        "id": 6,
         "name": "Penghapus Premium",
         "price": 3500
       }
@@ -94,6 +169,21 @@
         "id": 2,
         "name": "Pulpen",
         "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Spidol",
+        "price": 8000
+      },
+      {
+        "id": 4,
+        "name": "Penggaris",
+        "price": 6000
+      },
+      {
+        "id": 5,
+        "name": "Penghapus",
+        "price": 3000
       }
     ]
   }

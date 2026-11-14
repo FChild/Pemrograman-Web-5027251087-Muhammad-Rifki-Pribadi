@@ -1,81 +1,106 @@
-# Laporan Evidence — Product API dengan Prisma
+# Laporan Evidence Tugas 3 — Manajemen Produk
 
 **Nama:** Muhammad Rifki Pribadi  
 **NRP:** 5027251087  
-**Repository GitHub:** BELUM DIISI — tempel URL repository setelah di-push.  
-**Tanggal pengujian manual:** BELUM DIISI.
+**Repository:** BELUM DIISI.  
+**Pull Request:** BELUM DIBUAT.  
+**Waktu pengujian komponen:** 14-11-2026 20:04 WIB.
 
-> Status dokumen: implementasi dan pengujian otomatis selesai. Screenshot Postman/Prisma Studio serta tautan GitHub belum dilengkapi. Dokumen ini belum merupakan laporan pengumpulan final.
+## 1. Ringkasan pekerjaan
 
-## 1. Tujuan
+Project API sebelumnya ditambahkan frontend React sesuai gambar tugas. Halaman utama menampilkan produk sebagai kartu dengan ID, nama, harga rupiah, serta tombol Edit dan Hapus. Pencarian memfilter nama produk. Tambah dan Edit menggunakan form pop-up; Hapus menampilkan konfirmasi sebelum mengirim DELETE.
 
-Melanjutkan API produk dari Tugas Week 9 dengan penyimpanan database melalui Prisma serta menyediakan operasi GET, POST, PUT, dan DELETE. Pada versi awal, perubahan produk hanya tersimpan dalam array dan hilang ketika server dimulai ulang. Versi ini menyimpan perubahan ke SQLite sehingga data dapat dibaca kembali setelah restart.
+State dikelola melalui React hooks. Handler diteruskan dari parent ke child melalui props. Event klik atau submit memanggil fungsi saat interaksi, bukan saat render. Frontend terhubung ke Express dan Prisma, sehingga perubahan disimpan ke SQLite. PUT tetap menggunakan ID pada body JSON sesuai tugas API sebelumnya.
 
-## 2. Implementasi
+Harga harus lebih dari 0 di frontend dan backend, mengikuti teks pada gambar. Data awal lama dipertahankan; seed menambahkan produk contoh tanpa menimpa record dengan ID yang sudah ada.
 
-Backend menggunakan ExpressJS, Prisma Client 6.19.0, dan SQLite. Model Product menyimpan id integer otomatis, name string, dan price float. Data awal Buku (15000) dan Pulpen (5000) dipertahankan melalui seed.
+## 2. Hasil yang benar-benar sudah diuji
 
-| Operasi | Endpoint | Fungsi Prisma |
+| Jenis verifikasi | Hasil | Batas verifikasi |
 |---|---|---|
-| GET seluruh data | `/products` | `findMany` |
-| GET satu data | `/products/:id` | `findUnique` |
-| POST | `/products` | `create` |
-| PUT | `/products` | `update` |
-| DELETE | `/products/:id` | `delete` |
+| Build React dengan Vite | Berhasil | Memeriksa build, bukan tampilan piksel |
+| Integrasi API | 30/30 lulus | HTTP nyata, database sementara, restart proses, seed ulang |
+| Interaksi React dengan JSDOM | 18/18 lulus | Handler dan DOM, terhubung ke API/SQLite nyata; bukan browser visual |
+| Collection Postman melalui Newman | 28 request, 38 assertion lulus | Eksekusi CLI, bukan screenshot Postman |
+| Browser Chromium/Playwright | Belum berhasil dijalankan | Chromium diblokir lingkungan; izin tambahan ditolak |
+| Screenshot aplikasi/Postman/Studio | Belum tersedia | Harus diambil dari aplikasi yang berjalan sebelum pengumpulan |
+| PR, Rebase and merge, Google Form | Belum dilakukan | URL repository, akses GitHub, dan tautan Form belum tersedia |
 
-Body POST memuat name dan price, sedangkan body PUT memuat name, price, serta id sesuai instruksi tugas. DELETE menentukan id dari parameter URL. Input divalidasi sebelum menjalankan query; produk tidak ditemukan menghasilkan 404 dan input salah menghasilkan 400.
+Hasil mentah:
 
-## 3. Hasil pengujian otomatis yang sudah dijalankan
+- [API](evidence/automated-test-results.json).
+- [Before–after database dari API](evidence/database-before-after.json).
+- [Komponen React](evidence/component-test-results.json).
+- [Before–after database dari interaksi React](evidence/component-database-before-after.json).
+- [Newman](evidence/postman-newman-results.json).
 
-- Waktu eksekusi: **14 November 2026, 19:13 WIB**.
-- Lingkungan eksekusi: Node.js **v24.22.1**, Prisma **6.19.0**, SQLite lokal dalam database pengujian sementara.
-- Hasil aktual: **30/30 pemeriksaan lulus**.
-- Pengujian menggunakan HTTP ke proses Express nyata dan query Prisma untuk memeriksa isi database.
-- Bukti mentah: [hasil test](evidence/automated-test-results.json) dan [database before–after](evidence/database-before-after.json).
-- Pengujian otomatis ini dijalankan di lingkungan pengembangan paket, bukan screenshot manual dari komputer mahasiswa.
+## 3. Skenario interaksi komponen
 
-| No. | Skenario | Method | Status diharapkan | Hasil otomatis | Hasil manual |
-|---|---|---|---|---|---|
-| 01 | GET seluruh produk | GET | 200 | Lulus | Belum dicatat |
-| 02 | GET produk Buku | GET | 200 | Lulus | Belum dicatat |
-| 03 | GET ID tidak ditemukan | GET | 404 | Lulus | Belum dicatat |
-| 04 | GET ID tidak valid | GET | 400 | Lulus | Belum dicatat |
-| 05 | POST produk baru | POST | 201 | Lulus | Belum dicatat |
-| 06 | GET produk baru | GET | 200 | Lulus | Belum dicatat |
-| 07 | POST nama kosong | POST | 400 | Lulus | Belum dicatat |
-| 08 | POST harga negatif | POST | 400 | Lulus | Belum dicatat |
-| 09 | POST harga string | POST | 400 | Lulus | Belum dicatat |
-| 10 | POST field kurang | POST | 400 | Lulus | Belum dicatat |
-| 11 | POST JSON rusak | POST | 400 | Lulus | Belum dicatat |
-| 12 | PUT produk berhasil | PUT | 200 | Lulus | Belum dicatat |
-| 13 | GET hasil PUT | GET | 200 | Lulus | Belum dicatat |
-| 14 | PUT tanpa ID | PUT | 400 | Lulus | Belum dicatat |
-| 15 | PUT ID string | PUT | 400 | Lulus | Belum dicatat |
-| 16 | PUT nama kosong | PUT | 400 | Lulus | Belum dicatat |
-| 17 | PUT harga negatif | PUT | 400 | Lulus | Belum dicatat |
-| 18 | PUT field harga kurang | PUT | 400 | Lulus | Belum dicatat |
-| 19 | PUT ID tidak ditemukan | PUT | 404 | Lulus | Belum dicatat |
-| 20 | DELETE ID tidak valid | DELETE | 400 | Lulus | Belum dicatat |
-| 21 | DELETE ID tidak ditemukan | DELETE | 404 | Lulus | Belum dicatat |
-| 22 | DELETE produk berhasil | DELETE | 200 | Lulus | Belum dicatat |
-| 23 | GET produk setelah dihapus | GET | 404 | Lulus | Belum dicatat |
-| 24 | DELETE ulang produk | DELETE | 404 | Lulus | Belum dicatat |
-| 25 | POST harga nol valid | POST | 201 | Lulus | Belum dicatat |
-| 26 | DELETE produk harga nol | DELETE | 200 | Lulus | Belum dicatat |
-| 27 | GET daftar akhir | GET | 200 | Lulus | Belum dicatat |
-| 28 | Endpoint tidak tersedia | GET | 404 | Lulus | Belum dicatat |
+Semua hasil di tabel ini berasal dari React Testing Library dalam JSDOM. Native `dialog.showModal()`/`close()` dipolyfill untuk status terbuka/tertutup; perilaku fokus native, Escape, dan layout harus diverifikasi melalui browser.
 
-Dua pemeriksaan tambahan juga lulus: (1) produk hasil PUT masih tersedia setelah proses server dihentikan dan dimulai ulang; (2) menjalankan seed kembali tidak menimpa atau menggandakan data yang sudah ada. Pada seluruh kasus request gagal dan GET, isi tabel diperiksa agar tetap sama.
+| No. | Skenario | Hasil aktual |
+|---|---|---|
+| 1 | GET: komponen menampilkan 5 produk dari API | Lulus pada tes komponen |
+| 2 | Pencarian nama tidak peka huruf besar/kecil | Lulus pada tes komponen |
+| 3 | Pencarian tanpa hasil menampilkan empty state | Lulus pada tes komponen |
+| 4 | Form kosong ditolak tanpa menulis database | Lulus pada tes komponen |
+| 5 | Harga nol ditolak pada form | Lulus pada tes komponen |
+| 6 | Harga negatif ditolak pada form | Lulus pada tes komponen |
+| 7 | Batal tambah menutup dialog tanpa menyimpan | Lulus pada tes komponen |
+| 8 | API gagal: pesan tampil, input tetap, database tidak berubah (simulasi respons) | Lulus pada tes komponen |
+| 9 | Tombol simpan dinonaktifkan selama request berjalan | Lulus pada tes komponen |
+| 10 | POST lewat handler React menyimpan produk ke SQLite | Lulus pada tes komponen |
+| 11 | Edit membuka data produk yang dipilih melalui props | Lulus pada tes komponen |
+| 12 | Batal edit tidak mengubah database | Lulus pada tes komponen |
+| 13 | PUT melalui handler memperbarui nama/harga tanpa mengganti ID | Lulus pada tes komponen |
+| 14 | Muat ulang komponen membaca perubahan yang tersimpan | Lulus pada tes komponen |
+| 15 | Batal hapus mempertahankan produk | Lulus pada tes komponen |
+| 16 | DELETE setelah konfirmasi menghapus record dari SQLite | Lulus pada tes komponen |
+| 17 | Gagal memuat dapat dicoba ulang (simulasi respons) | Lulus pada tes komponen |
+| 18 | Database kosong menampilkan empty state | Lulus pada tes komponen |
 
-Collection Postman juga telah dieksekusi dengan **Newman 6.2.1**: **28 request** selesai dan **40 assertion lulus**, tanpa kegagalan. Hasil aktual tersedia di [postman-newman-results.json](evidence/postman-newman-results.json). Ini merupakan eksekusi collection melalui CLI, bukan screenshot aplikasi Postman.
+Skenario gagal API memakai respons error yang sengaja disimulasikan. Skenario CRUD normal menggunakan Express dan database SQLite nyata. Kedua jenis pengujian tersebut dibedakan dalam file hasil.
 
-## 4. Perubahan database aktual dari integration test
+## 4. Skenario API
 
-Tabel berikut berasal dari file hasil pengujian, bukan ilustrasi buatan. ID pada pengujian manual dapat berbeda karena mengikuti autoincrement database lokal masing-masing.
+| No. | Skenario | Status diharapkan | Status aktual | Hasil |
+|---|---|---|---|---|
+| 01 | GET seluruh produk | 200 | 200 | Lulus |
+| 02 | GET produk Buku | 200 | 200 | Lulus |
+| 03 | GET ID tidak ditemukan | 404 | 404 | Lulus |
+| 04 | GET ID tidak valid | 400 | 400 | Lulus |
+| 05 | POST produk baru | 201 | 201 | Lulus |
+| 06 | GET produk baru | 200 | 200 | Lulus |
+| 07 | POST nama kosong | 400 | 400 | Lulus |
+| 08 | POST harga negatif | 400 | 400 | Lulus |
+| 09 | POST harga string | 400 | 400 | Lulus |
+| 10 | POST field kurang | 400 | 400 | Lulus |
+| 11 | POST JSON rusak | 400 | 400 | Lulus |
+| 12 | PUT produk berhasil | 200 | 200 | Lulus |
+| 13 | GET hasil PUT | 200 | 200 | Lulus |
+| 14 | PUT tanpa ID | 400 | 400 | Lulus |
+| 15 | PUT ID string | 400 | 400 | Lulus |
+| 16 | PUT nama kosong | 400 | 400 | Lulus |
+| 17 | PUT harga negatif | 400 | 400 | Lulus |
+| 18 | PUT field harga kurang | 400 | 400 | Lulus |
+| 19 | PUT ID tidak ditemukan | 404 | 404 | Lulus |
+| 20 | DELETE ID tidak valid | 400 | 400 | Lulus |
+| 21 | DELETE ID tidak ditemukan | 404 | 404 | Lulus |
+| 22 | DELETE produk berhasil | 200 | 200 | Lulus |
+| 23 | GET produk setelah dihapus | 404 | 404 | Lulus |
+| 24 | DELETE ulang produk | 404 | 404 | Lulus |
+| 25 | POST harga nol ditolak | 400 | 400 | Lulus |
+| 26 | PUT harga nol ditolak | 400 | 400 | Lulus |
+| 27 | GET daftar akhir | 200 | 200 | Lulus |
+| 28 | Endpoint tidak tersedia | 404 | 404 | Lulus |
 
-### POST — penambahan produk
+Dua pemeriksaan tambahan yang lulus adalah persistensi setelah restart proses server dan seed ulang tidak menimpa data yang ada.
 
-Satu record Penghapus dengan harga 2000 bertambah.
+## 5. Perubahan database dari interaksi React
+
+Tabel berikut dibaca langsung melalui Prisma pada database pengujian sementara. Ini bukti data, bukan screenshot database. ID pada komputer lain dapat berbeda.
+
+### POST — tambah
 
 **Sebelum**
 
@@ -83,6 +108,9 @@ Satu record Penghapus dengan harga 2000 bertambah.
 |---|---|---|
 | 1 | Buku | 15000 |
 | 2 | Pulpen | 5000 |
+| 3 | Spidol | 8000 |
+| 4 | Penggaris | 6000 |
+| 5 | Penghapus | 3000 |
 
 **Sesudah**
 
@@ -90,11 +118,12 @@ Satu record Penghapus dengan harga 2000 bertambah.
 |---|---|---|
 | 1 | Buku | 15000 |
 | 2 | Pulpen | 5000 |
-| 3 | Penghapus | 2000 |
+| 3 | Spidol | 8000 |
+| 4 | Penggaris | 6000 |
+| 5 | Penghapus | 3000 |
+| 6 | Stabilo Uji | 9000 |
 
-### PUT — perubahan produk
-
-Record dengan ID yang sama berubah menjadi Penghapus Premium, harga 3500. Jumlah record tetap.
+### PUT — edit
 
 **Sebelum**
 
@@ -102,7 +131,10 @@ Record dengan ID yang sama berubah menjadi Penghapus Premium, harga 3500. Jumlah
 |---|---|---|
 | 1 | Buku | 15000 |
 | 2 | Pulpen | 5000 |
-| 3 | Penghapus | 2000 |
+| 3 | Spidol | 8000 |
+| 4 | Penggaris | 6000 |
+| 5 | Penghapus | 3000 |
+| 6 | Stabilo Uji | 9000 |
 
 **Sesudah**
 
@@ -110,11 +142,12 @@ Record dengan ID yang sama berubah menjadi Penghapus Premium, harga 3500. Jumlah
 |---|---|---|
 | 1 | Buku | 15000 |
 | 2 | Pulpen | 5000 |
-| 3 | Penghapus Premium | 3500 |
+| 3 | Spidol | 8000 |
+| 4 | Penggaris | 6000 |
+| 5 | Penghapus | 3000 |
+| 6 | Stabilo Premium | 12000 |
 
-### DELETE — penghapusan produk
-
-Record Penghapus Premium dihapus. Produk awal tetap tersedia.
+### DELETE — hapus
 
 **Sebelum**
 
@@ -122,7 +155,10 @@ Record Penghapus Premium dihapus. Produk awal tetap tersedia.
 |---|---|---|
 | 1 | Buku | 15000 |
 | 2 | Pulpen | 5000 |
-| 3 | Penghapus Premium | 3500 |
+| 3 | Spidol | 8000 |
+| 4 | Penggaris | 6000 |
+| 5 | Penghapus | 3000 |
+| 6 | Stabilo Premium | 12000 |
 
 **Sesudah**
 
@@ -130,71 +166,36 @@ Record Penghapus Premium dihapus. Produk awal tetap tersedia.
 |---|---|---|
 | 1 | Buku | 15000 |
 | 2 | Pulpen | 5000 |
+| 3 | Spidol | 8000 |
+| 4 | Penggaris | 6000 |
+| 5 | Penghapus | 3000 |
 
-## 5. Screenshot pengujian manual — perlu dilengkapi
+## 6. Bukti visual yang perlu dilengkapi
 
-Ikuti [PANDUAN_POSTMAN.md](PANDUAN_POSTMAN.md). Simpan gambar asli ke folder `screenshots/` dan ganti bagian BELUM DIISI di bawah dengan tautan gambar.
+Ikuti [PANDUAN_TUGAS_3.md](PANDUAN_TUGAS_3.md) dan [PANDUAN_POSTMAN.md](PANDUAN_POSTMAN.md).
 
-### A. GET berhasil dan produk tidak ditemukan
+| Bukti | Status |
+|---|---|
+| Halaman daftar produk dan pencarian | Belum dilampirkan |
+| Pop-up tambah dan validasi input | Belum dilampirkan |
+| Produk berhasil ditambahkan | Belum dilampirkan |
+| Pop-up edit dan hasil perubahan | Belum dilampirkan |
+| Pop-up hapus, batal, dan hasil hapus | Belum dilampirkan |
+| Tampilan mobile | Belum dilampirkan |
+| Postman sukses dan validasi gagal | Belum dilampirkan |
+| Prisma Studio sebelum/sesudah POST | Belum dilampirkan |
+| Prisma Studio sebelum/sesudah PUT | Belum dilampirkan |
+| Prisma Studio sebelum/sesudah DELETE | Belum dilampirkan |
 
-**Hasil yang diharapkan:** GET seluruh produk menghasilkan 200 dan array data; GET ID tidak ada menghasilkan 404.
-
-**Screenshot dan hasil manual:** BELUM DIISI.
-
-### B. POST berhasil
-
-**Hasil yang diharapkan:** POST name Penghapus, price 2000 menghasilkan 201. Jumlah record naik satu, dengan ID otomatis.
-
-**Screenshot Postman:** BELUM DIISI (`06-post-success.png`).  
-**Screenshot database sebelum:** BELUM DIISI (`05-db-before-post.png`).  
-**Screenshot database sesudah:** BELUM DIISI (`07-db-after-post.png`).
-
-### C. POST gagal karena validasi
-
-**Hasil yang diharapkan:** nama kosong, harga negatif, harga string, field kurang, atau JSON rusak menghasilkan 400 dan tidak menambah data.
-
-**Screenshot dan hasil manual:** BELUM DIISI.
-
-### D. PUT berhasil
-
-**Hasil yang diharapkan:** body berisi id produk hasil POST, name Penghapus Premium, price 3500. Respons 200; ID tetap, name/price berubah.
-
-**Screenshot Postman:** BELUM DIISI (`13-put-success.png`).  
-**Screenshot database sebelum:** BELUM DIISI (`12-db-before-put.png`).  
-**Screenshot database sesudah:** BELUM DIISI (`14-db-after-put.png`).
-
-### E. PUT gagal karena validasi atau ID tidak ditemukan
-
-**Hasil yang diharapkan:** ID tidak disertakan, ID string, name kosong, atau price salah menghasilkan 400. ID valid tetapi tidak ada menghasilkan 404. Tidak ada perubahan database.
-
-**Screenshot dan hasil manual:** BELUM DIISI.
-
-### F. Persistensi setelah restart
-
-**Hasil yang diharapkan:** setelah server dihentikan dan dinyalakan ulang, GET produk hasil PUT masih menghasilkan Penghapus Premium dengan price 3500.
-
-**Screenshot dan hasil manual:** BELUM DIISI (`18-get-after-restart.png`).
-
-### G. DELETE berhasil
-
-**Hasil yang diharapkan:** DELETE ID produk hasil POST menghasilkan 200. Record hilang dari tabel; data lainnya tetap.
-
-**Screenshot Postman:** BELUM DIISI (`20-delete-success.png`).  
-**Screenshot database sebelum:** BELUM DIISI (`19-db-before-delete.png`).  
-**Screenshot database sesudah:** BELUM DIISI (`21-db-after-delete.png`).
-
-### H. GET/DELETE setelah data dihapus
-
-**Hasil yang diharapkan:** GET ID yang telah dihapus dan DELETE ulang menghasilkan 404.
-
-**Screenshot dan hasil manual:** BELUM DIISI.
-
-Contoh sintaks Markdown untuk menyisipkan gambar, gunakan setelah file screenshot benar-benar ada:
+Setelah file gambar ada, sisipkan ke dokumen, misalnya:
 
 ```markdown
-![POST berhasil](screenshots/06-post-success.png)
+![Halaman utama](screenshots/tugas-3/01-halaman-utama.png)
+![Popup edit](screenshots/tugas-3/08-popup-edit.png)
 ```
 
-## 6. Kesimpulan sementara berdasarkan uji otomatis
+Jangan menyisipkan gambar ilustrasi atau menganggap JSON sebagai screenshot. Untuk bukti langsung pada PR, seret gambar asli ke kolom deskripsi GitHub.
 
-Implementasi telah memenuhi operasi CRUD melalui Prisma. Uji otomatis menunjukkan bahwa perubahan POST, PUT, dan DELETE sesuai dengan isi database, input tidak valid ditolak, dan hasil perubahan tetap tersedia setelah restart proses server. Sebelum dikumpulkan, laporan perlu dilengkapi hasil manual, screenshot asli klien API/database, serta link repository GitHub.
+## 7. Kesimpulan
+
+Build, pengujian API, dan pengujian interaksi komponen telah berhasil. Daftar produk, pencarian, validasi, CRUD, dan pembatalan bekerja pada tingkat DOM/handler dan database dalam pengujian yang dijalankan. Pemeriksaan visual browser, screenshot, serta alur pengumpulan GitHub/Form masih perlu dilengkapi sebelum tugas dinyatakan siap dikumpulkan.
