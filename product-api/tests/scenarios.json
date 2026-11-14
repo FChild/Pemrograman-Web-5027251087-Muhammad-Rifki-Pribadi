@@ -217,25 +217,25 @@
     "status": 404
   },
   {
-    "name": "25 - POST harga nol valid",
+    "name": "25 - POST harga nol ditolak",
     "method": "POST",
     "path": "/products",
-    "status": 201,
-    "capture": "freeProductId",
-    "expected": {
-      "name": "Sampel Gratis",
-      "price": 0
-    },
+    "status": 400,
     "body": {
       "name": "Sampel Gratis",
       "price": 0
     }
   },
   {
-    "name": "26 - DELETE produk harga nol",
-    "method": "DELETE",
-    "path": "/products/{{freeProductId}}",
-    "status": 200
+    "name": "26 - PUT harga nol ditolak",
+    "method": "PUT",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "id": 1,
+      "name": "Buku",
+      "price": 0
+    }
   },
   {
     "name": "27 - GET daftar akhir",

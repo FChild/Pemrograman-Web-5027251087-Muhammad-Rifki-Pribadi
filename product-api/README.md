@@ -1,275 +1,161 @@
-# Product API — ExpressJS + Prisma + SQLite
+# Tugas 3 — Manajemen Produk
 
-**Nama:** Muhammad Rifki Pribadi  
-**NRP:** 5027251087  
-**Pengembangan:** project Tugas Week 9, ditambah Prisma dan CRUD sesuai tugas lanjutan.
+**Muhammad Rifki Pribadi · 5027251087**
 
-## 1. Perubahan dari project sebelumnya
+Project tugas sebelumnya dilanjutkan dengan **React**, **Express**, **Prisma**, dan **SQLite**. Tampilan mengikuti gambar tugas: daftar kartu produk, pencarian nama, tombol Tambah Produk, serta pop-up tambah, edit, dan konfirmasi hapus. Semua perubahan disimpan melalui API ke database.
 
-| Bagian | Week 9 | Versi lanjutan |
-|---|---|---|
-| Penyimpanan | Array `data/products.js` | Database SQLite melalui Prisma |
-| GET seluruh produk | Ada | Membaca `prisma.product.findMany()` |
-| GET berdasarkan ID | Ada | Tetap tersedia, membaca `findUnique()` |
-| POST | Menambahkan ke array | Menambahkan record melalui `create()` |
-| PUT | Belum ada | Memperbarui record melalui `update()`, ID di body |
-| DELETE | Belum ada | Menghapus record melalui `delete()`, ID di URL |
-| Data setelah restart | Perubahan hilang | Tetap tersimpan di file database |
-| Bukti pengujian | Contoh curl | Collection Postman, integration test, panduan laporan |
+**Mulai dari sini:** [panduan lengkap pengerjaan sampai PR dan Google Form](docs/PANDUAN_TUGAS_3.md). Pengumpulan wajib memakai **branch `tugas-3` → Pull Request ke `main` → Rebase and merge → tautan PR di Google Form**.
 
-SQLite dipilih karena slide tidak menentukan jenis database. Tidak perlu menyalakan MySQL/XAMPP. Prisma adalah ORM untuk berkomunikasi dengan database; SQLite adalah databasenya. Versi `prisma` dan `@prisma/client` dikunci sama-sama **6.19.0** agar sesuai dengan konfigurasi CommonJS project ini. Gunakan versi di `package-lock.json`, jangan menggantinya dengan `prisma@latest` saat mengikuti panduan ini.
+## Cara menjalankan di Windows
 
-## 2. Cara menjalankan di Windows / VS Code
-
-1. Ekstrak ZIP, lalu buka folder **product-api** di VS Code.
-2. Buka **Terminal > New Terminal**. Pastikan terminal berada di folder yang memuat `package.json`.
-3. Periksa Node.js dan npm:
-
-```powershell
-node -v
-npm -v
-```
-
-Gunakan Node.js 22.12+ atau 24.x. Project diuji dengan Node.js 24.22.1.
-
-4. Pasang dependency dari lockfile:
+Ekstrak ZIP dan buka folder `product-api` dengan VS Code. Jalankan di terminal yang memuat `package.json`:
 
 ```powershell
 npm ci
-```
-
-5. Buat konfigurasi lokal. Jalankan ini satu kali saat belum memiliki `.env`:
-
-```powershell
+npm ci --prefix client
 Copy-Item .env.example .env
-```
-
-Jika memakai Linux, macOS, atau Git Bash:
-
-```bash
-cp .env.example .env
-```
-
-Isi `.env`:
-
-```dotenv
-DATABASE_URL="file:./dev.db"
-PORT=3000
-```
-
-Path relatif SQLite pada konfigurasi ini mengacu ke folder schema, sehingga database berada di `prisma/dev.db`.
-
-6. Buat Prisma Client, terapkan migration, lalu isi data awal:
-
-```powershell
 npm run db:setup
-```
-
-Perintah tersebut menjalankan `prisma generate`, membuka file SQLite bila belum ada, menjalankan `prisma migrate deploy`, dan seed. File migration sudah disediakan, jadi tidak perlu membuat migration baru untuk setup pertama. Data awal: Buku (15000) dan Pulpen (5000). Seed ulang tidak menimpa produk yang telah diedit dengan ID yang sama; jika ID 1/2 telah dihapus, seed akan menambahkannya kembali.
-
-7. Nyalakan server:
-
-```powershell
+npm run build
 npm start
 ```
 
-Buka `http://localhost:3000/products` untuk melihat data. Root `/` memang tidak memiliki halaman web; project ini adalah REST API. Hentikan server dengan `Ctrl+C`.
+Buka **http://localhost:3000** untuk halaman web, atau **http://localhost:3000/products** untuk API JSON. Gunakan Node.js 22.12+ atau 24.x. Salin `.env.example` hanya pada setup pertama agar konfigurasi lama tidak tertimpa. Di Linux/macOS, perintah penyalinan menjadi `cp .env.example .env`.
 
-8. Buka terminal **kedua**, tetap di folder `product-api`, untuk melihat database:
+Pada penggunaan berikutnya cukup `npm start`. Jika mengubah kode React, jalankan `npm run build` lagi sebelum membuka hasil terbaru.
+
+Untuk mode pengembangan dengan pembaruan otomatis:
+
+```powershell
+# Terminal 1: API
+npm run dev
+```
+
+```powershell
+# Terminal 2: UI React
+npm run dev:ui
+```
+
+Buka URL yang dicetak Vite (biasanya http://localhost:5173). Vite meneruskan `/products` ke API pada port 3000. Jika PORT backend diganti, sesuaikan proxy dalam `client/vite.config.js`.
+
+Untuk melihat tabel asli:
 
 ```powershell
 npm run db:studio
 ```
 
-Buka alamat yang dicetak Prisma Studio, lalu pilih tabel **Product**. Biarkan terminal server dan Studio tetap berjalan. Refresh data Studio setelah mengirim POST, PUT, atau DELETE.
+Buka alamat Prisma Studio yang dicetak terminal, lalu pilih **Product**. Database lokal tersimpan di `prisma/dev.db`.
 
-## 3. Endpoint API
+## Fitur sesuai gambar
 
-Base URL: `http://localhost:3000`
+| Fitur | Implementasi |
+|---|---|
+| Halaman utama | Judul Manajemen Produk, deskripsi, daftar kartu, jumlah produk |
+| Kartu | ID, nama, harga dalam rupiah, tombol Edit dan Hapus |
+| Pencarian | Filter nama, tidak peka huruf besar/kecil; jumlah hasil diperbarui |
+| Tambah | Pop-up dengan nama dan harga, Simpan Produk, Batal, dan tutup |
+| Edit | Data terisi otomatis; nama/harga bisa diganti, ID tetap |
+| Hapus | Konfirmasi menampilkan produk; Batal atau Hapus Produk |
+| Validasi | Nama wajib diisi; harga angka finite **lebih dari 0** |
+| Feedback | Pesan sukses/gagal, loading, tombol simpan dinonaktifkan saat request |
+| Data kosong | Tampilan belum ada produk dan pencarian tanpa hasil |
+| Responsif | Grid 3 kolom, 2 kolom, atau 1 kolom sesuai lebar layar |
 
-| Method | Endpoint | Body JSON | Respons sukses |
+Data awal **Buku 15000 dan Pulpen 5000** dari project lama dipertahankan. Seed menambahkan Spidol 8000, Penggaris 6000, dan Penghapus 3000 jika ID-nya belum ada. Seed menggunakan upsert tanpa update sehingga tidak menimpa produk lama dengan ID yang sama. Karena itu, data lama di komputermu dapat berbeda dari lima contoh pada database baru.
+
+Perubahan aturan dari paket sebelumnya: harga 0 sekarang ditolak agar sesuai keterangan gambar “Harga harus lebih dari 0”. Validasi ini berlaku pada frontend dan backend. Data lama yang sudah ada tidak diubah otomatis.
+
+## Endpoint API
+
+| Method | URL | Body | Sukses |
 |---|---|---|---|
-| GET | `/products` | Tidak ada | 200, array semua produk |
-| GET | `/products/:id` | Tidak ada | 200, satu produk |
+| GET | `/products` | — | 200, array seluruh produk |
+| GET | `/products/:id` | — | 200, satu produk |
 | POST | `/products` | `name`, `price` | 201, produk baru |
-| PUT | `/products` | **`id`, `name`, `price`** | 200, produk setelah diubah |
-| DELETE | `/products/:id` | Tidak ada | 200, pesan dan produk yang dihapus |
+| PUT | `/products` | `id`, `name`, `price` | 200, produk yang diperbarui |
+| DELETE | `/products/:id` | — | 200, pesan penghapusan |
 
-**PUT menggunakan ID di body sesuai instruksi tugas**, bukan `/products/:id`. POST dan PUT membutuhkan header `Content-Type: application/json`. `id` pada PUT harus angka, bukan string.
-
-POST `/products`:
+PUT mengikuti tugas sebelumnya: ID berupa angka di **body**, bukan di URL. Nama kosong, harga <= 0, harga string, dan ID tidak valid ditolak dengan 400; produk tidak ditemukan menghasilkan 404. Kirim POST/PUT dengan `Content-Type: application/json`.
 
 ```json
 {
-  "name": "Penghapus",
-  "price": 2000
+  "id": 1,
+  "name": "Buku Premium",
+  "price": 18000
 }
 ```
 
-Contoh respons pada database baru:
+## Komponen dan event handler
 
-```json
-{
-  "id": 3,
-  "name": "Penghapus",
-  "price": 2000
-}
-```
-
-PUT `/products` — ganti `3` dengan ID yang benar-benar dikembalikan POST:
-
-```json
-{
-  "id": 3,
-  "name": "Penghapus Premium",
-  "price": 3500
-}
-```
-
-DELETE `/products/3` — gunakan ID produk yang dibuat tadi:
-
-```json
-{
-  "message": "Produk berhasil dihapus",
-  "data": {
-    "id": 3,
-    "name": "Penghapus Premium",
-    "price": 3500
-  }
-}
-```
-
-ID dibuat otomatis oleh database dan tidak harus berurutan kembali setelah record dihapus.
-
-## 4. Aturan validasi dan error
-
-- `name`: wajib string, setelah spasi awal/akhir dihapus tidak boleh kosong.
-- `price`: wajib number JSON yang finite dan >= 0. Harga 0 boleh; `"2000"` dan angka negatif ditolak.
-- PUT wajib menyertakan `id`, `name`, dan `price` lengkap.
-- `id`: integer positif dalam rentang Prisma Int (1–2147483647). URL ID juga divalidasi.
-- Field tambahan tidak disimpan; ID POST dibuat otomatis oleh database.
-
-| Status | Arti |
+| File | Peran |
 |---|---|
-| 200 | GET/PUT/DELETE berhasil |
-| 201 | Produk baru berhasil dibuat |
-| 400 | Validasi gagal atau JSON rusak |
-| 404 | Produk atau endpoint tidak ditemukan |
-| 413 | Body request terlalu besar |
-| 500 | Kesalahan internal server/database |
+| `client/src/App.jsx` | State produk/pencarian/modal, GET awal, handler simpan dan hapus |
+| `client/src/components/ProductCard.jsx` | Menampilkan satu produk dan menerima `onEdit`/`onDelete` dari props |
+| `client/src/components/ProductForm.jsx` | Form tambah/edit, state input, validasi, handler submit |
+| `client/src/components/DeleteConfirmation.jsx` | Menampilkan produk dan mengirim ID melalui `onConfirm` |
+| `client/src/components/Modal.jsx` | Dialog native, tombol tutup, Escape, backdrop |
+| `client/src/api.js` | Permintaan fetch ke API dan format rupiah |
+| `client/src/styles.css` | Tampilan responsif sesuai referensi |
+| `app.js` | Server API dan file build React |
+| `controllers/productController.js` | Validasi backend dan CRUD Prisma |
+| `prisma/` | Schema, migration, seed |
 
-## 5. Pengujian Postman dan bukti tugas
+Penjelasan khusus **handler lokal, handler dari props, dan waktu fungsi dipanggil** tersedia di [PENJELASAN_EVENT_HANDLER.md](docs/PENJELASAN_EVENT_HANDLER.md).
 
-Panduan klik dan urutan screenshot: **[docs/PANDUAN_POSTMAN.md](docs/PANDUAN_POSTMAN.md)**.
-
-1. Nyalakan API dan Prisma Studio.
-2. Di Postman Desktop, klik **Import**, lalu pilih `postman/Product-API-Prisma.postman_collection.json`.
-3. Collection berisi **28 request**, dengan `baseUrl` bawaan `http://localhost:3000`.
-4. Jalankan berurutan. Request 05 menyimpan ID produk otomatis untuk request berikutnya.
-5. Untuk bukti before–after, jalankan request satu per satu, bukan langsung seluruh Runner.
-6. Lengkapi **[docs/LAPORAN_EVIDENCE.md](docs/LAPORAN_EVIDENCE.md)** dengan screenshot asli dan link repository GitHub.
-
-Collection juga dapat dijalankan melalui Runner untuk mengecek status respons dan beberapa nilai data secara otomatis. Pengujian berurutan akan membuat, mengubah, lalu menghapus produk uji.
-
-## 6. Pengujian otomatis lokal
+## Pengujian
 
 ```powershell
+# API nyata + database sementara; 30 pemeriksaan
 npm test
+
+# Interaksi komponen React (JSDOM) + API nyata + database sementara
+npm run test:components
 ```
 
-Test membuat **database sementara terpisah**, menjalankan migration dan seed, menyalakan server di port bebas, mengirim 28 request HTTP, serta menguji restart proses server dan seed ulang. Total 30 pemeriksaan. Test memverifikasi status, isi respons relevan, dan perubahan database; request gagal tidak boleh mengubah data. Database aplikasi `prisma/dev.db` tidak dihapus oleh test ini.
+Kedua test tersebut menggunakan database sementara terpisah; tidak menghapus database aplikasi kamu. Hasil aktual berada di `docs/evidence/` dan dirangkum di [LAPORAN_EVIDENCE.md](docs/LAPORAN_EVIDENCE.md).
 
-Hasil tersimpan di:
-
-- `docs/evidence/automated-test-results.json` — hasil aktual tiap pemeriksaan.
-- `docs/evidence/database-before-after.json` — isi tabel sebelum/sesudah POST, PUT, DELETE.
-- `docs/evidence/postman-newman-results.json` — hasil aktual collection melalui Newman: 28 request, 40 assertion lulus.
-
-File JSON ini merupakan bukti pengujian otomatis tambahan, **belum menggantikan screenshot Postman dan database yang diminta pada slide**. Menjalankan test lagi memperbarui kedua file hasil tersebut.
-
-Jika ingin memeriksa collection melalui CLI, nyalakan server (`npm start`) pada terminal pertama, lalu jalankan di terminal kedua:
+Untuk menjalankan browser sungguhan dan menghasilkan screenshot otomatis pada komputermu:
 
 ```powershell
-npx --yes newman@6.2.1 run postman/Product-API-Prisma.postman_collection.json
+npx playwright install chromium
+npm run build
+npm run test:ui
 ```
 
-Perintah Newman ini menguji database aplikasi yang sedang berjalan, sehingga jalankan pada database latihan. Collection membuat, mengubah, lalu menghapus produk uji.
+`test:ui` menyalakan server sendiri di port bebas dan menulis screenshot ke `docs/screenshots/tugas-3/`. Tidak perlu menyalakan API secara manual untuk test ini. **Test browser dan screenshot belum berhasil dijalankan dalam lingkungan pembuatan paket karena pembatasan Chromium**; jangan menuliskan hasil lulus sebelum menjalankannya sendiri. Jika unduhan Chromium tidak tersedia, test juga menerima `CHROMIUM_PATH` yang menunjuk ke executable browser Chromium/Chrome lokal.
 
-## 7. Struktur dan alur kode
+Untuk Postman, import `postman/Product-API-Prisma.postman_collection.json`. Jalankan 01–28 berurutan. Panduan screenshot API dan database: [PANDUAN_POSTMAN.md](docs/PANDUAN_POSTMAN.md).
 
-| File/folder | Fungsi |
+## Pengumpulan
+
+1. Ikuti [PANDUAN_TUGAS_3.md](docs/PANDUAN_TUGAS_3.md), termasuk branch dan commit per kelompok perubahan.
+2. Lengkapi screenshot pada laporan dan jalankan test lokal.
+3. Gunakan judul: **`[Tugas 3] Menambahkan UI manajemen produk dengan React dan Prisma`**.
+4. Salin [PR_DESCRIPTION.md](PR_DESCRIPTION.md) ke deskripsi PR dan lengkapi bagian yang ditandai.
+5. Buat PR dari `tugas-3` ke `main`, lalu **Rebase and merge** setelah pemeriksaan selesai.
+6. Kumpulkan URL **PR**, bukan URL repository, melalui Google Form dosen.
+
+Repository GitHub, nomor PR, dan URL Google Form belum diberikan. Paket ini belum melakukan push, membuat PR, merge, atau mengirim formulir.
+
+## File yang disimpan di Git
+
+Commit source code, `.env.example`, lockfile root/client, schema dan migration Prisma, test, dokumentasi, collection Postman, serta screenshot bukti. `.gitignore` mengecualikan `.env`, `node_modules`, `client/dist`, dan file database lokal. Jangan menyalin folder `.git` dari project lain ke repository yang sudah ada.
+
+## Troubleshooting
+
+| Masalah | Langkah |
 |---|---|
-| `app.js` | Middleware JSON, pemasangan route, error handler, startup dan shutdown |
-| `routes/productRoutes.js` | Pemetaan method/URL ke controller dan penanganan async error |
-| `controllers/productController.js` | Validasi input dan operasi CRUD Prisma |
-| `config/prisma.js` | Satu instance PrismaClient untuk aplikasi |
-| `prisma/schema.prisma` | Model Product dan koneksi SQLite |
-| `prisma/migrations/` | SQL pembentukan tabel, disimpan di Git |
-| `scripts/init-db.js` | Membuka/membuat file SQLite sebelum migration |
-| `prisma/seed.js` | Mengisi data awal dengan upsert |
-| `data/products.js` | Data awal lama, khusus seed; bukan penyimpanan API |
-| `postman/` | Collection siap import |
-| `tests/` | Skenario dan integration test |
-| `docs/` | Panduan, laporan, dan hasil pengujian |
-
-Alurnya: request masuk ke Express, route memilih controller, controller memvalidasi input dan memanggil Prisma Client, Prisma mengakses SQLite, lalu controller mengirim JSON. Model Product terdiri atas `id: Int`, `name: String`, `price: Float`; `price` mempertahankan dukungan angka desimal dari project sebelumnya. Untuk aplikasi keuangan produksi, tipe harga perlu dirancang lebih ketat; tugas ini mempertahankan kontrak data awal.
-
-## 8. Mengumpulkan melalui GitHub
-
-Belum ada repository yang dibuat atau di-push oleh paket ini. Gunakan repository project kamu dan isi tautannya di laporan.
-
-Jika project ini sudah berada dalam repository lama:
-
-```powershell
-git status
-git add .
-git diff --cached --stat
-git commit -m "Tambahkan Prisma SQLite dan CRUD produk lengkap"
-git push
-```
-
-Jika belum ada repository:
-
-1. Buat repository kosong di GitHub.
-2. Di folder `product-api`, jalankan berikut; ganti placeholder URL dengan URL repository milikmu:
-
-```powershell
-git init
-git add .
-git commit -m "Product API dengan Prisma dan CRUD"
-git branch -M main
-git remote add origin https://github.com/USERNAME/NAMA-REPOSITORY.git
-git push -u origin main
-```
-
-`.gitignore` mengecualikan `node_modules`, `.env`, dan database lokal. Commit `.env.example`, schema, migration, lockfile, source code, collection, laporan, serta screenshot. Orang lain dapat membuat database sendiri dengan `npm ci`, menyalin `.env.example`, lalu `npm run db:setup`.
-
-Checklist pengumpulan:
-
-- [ ] Link repository GitHub dapat diakses dosen/asisten.
-- [ ] Source code dan Prisma migration sudah di-push.
-- [ ] Laporan menampilkan skenario sukses dan validasi gagal.
-- [ ] Screenshot Postman menunjukkan method, URL, body, status, dan response.
-- [ ] Screenshot database sebelum/sesudah POST, PUT, DELETE disertakan.
-- [ ] Link repository dan screenshot asli telah dimasukkan ke laporan.
-
-## 9. Jika ada error
-
-| Error/gejala | Tindakan |
-|---|---|
-| `npm` tidak dikenali | Pasang Node.js, lalu buka ulang terminal |
-| Prisma Client belum terbuat | Jalankan `npm run db:generate` |
-| `Environment variable not found: DATABASE_URL` | Salin `.env.example` ke `.env` |
-| Tabel Product belum ada | Jalankan `npm run db:setup` |
-| `EADDRINUSE` | Hentikan server lain di port 3000 atau ubah PORT dan baseUrl Postman |
-| Postman tidak bisa konek localhost | Gunakan Postman Desktop atau Desktop Agent, pastikan server hidup |
-| PUT mengembalikan 400 | ID harus angka di body, sertakan name dan price |
-| GET `/` menghasilkan 404 | Gunakan `/products` |
-| ID produk tidak sama dengan contoh | Gunakan ID dari respons POST, bukan mengasumsikan selalu 3 |
+| Halaman `/` menghasilkan 404 | Jalankan `npm ci --prefix client`, lalu `npm run build` |
+| Halaman web sudah tampil, data gagal dimuat | Pastikan `.env` ada dan `npm run db:setup` sudah berhasil |
+| Prisma Client belum tersedia | `npm run db:generate` |
+| Tabel Product belum ada | `npm run db:setup` |
+| Port 3000 terpakai | Hentikan server lama, atau ubah PORT dan proxy Vite jika dipakai |
+| Perubahan React belum terlihat | Build ulang, lalu refresh browser |
+| Harga 0 mendapat 400 | Sesuai aturan baru: harga harus lebih dari 0 |
+| `npm ci` menolak lockfile | Pastikan menggunakan seluruh file dari paket, termasuk kedua lockfile |
+| Browser test belum dapat berjalan | Gunakan test API/komponen, jalankan manual, lalu ambil screenshot asli |
 
 ## Referensi
 
-- [Prisma Migrate — development and production (v6)](https://www.prisma.io/docs/orm/v6/prisma-migrate/workflows/development-and-production)
-- [Prisma seeding (v6)](https://www.prisma.io/docs/orm/v6/prisma-migrate/workflows/seeding)
-
-Dokumentasi dapat menampilkan contoh versi yang lebih baru. Untuk menjalankan paket ini, ikuti versi dan perintah yang dikunci dalam project.
+- [React: responding to events](https://react.dev/learn/responding-to-events)
+- [Vite: getting started](https://vite.dev/guide/)
+- [GitHub: merging a pull request](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-a-pull-request)
