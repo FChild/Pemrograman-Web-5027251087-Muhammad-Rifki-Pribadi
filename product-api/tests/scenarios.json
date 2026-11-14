@@ -1,0 +1,252 @@
+[
+  {
+    "name": "01 - GET seluruh produk",
+    "method": "GET",
+    "path": "/products",
+    "status": 200
+  },
+  {
+    "name": "02 - GET produk Buku",
+    "method": "GET",
+    "path": "/products/1",
+    "status": 200
+  },
+  {
+    "name": "03 - GET ID tidak ditemukan",
+    "method": "GET",
+    "path": "/products/2147483647",
+    "status": 404
+  },
+  {
+    "name": "04 - GET ID tidak valid",
+    "method": "GET",
+    "path": "/products/abc",
+    "status": 400
+  },
+  {
+    "name": "05 - POST produk baru",
+    "method": "POST",
+    "path": "/products",
+    "status": 201,
+    "capture": "productId",
+    "snapshot": "post",
+    "expected": {
+      "name": "Penghapus",
+      "price": 2000
+    },
+    "body": {
+      "name": "  Penghapus  ",
+      "price": 2000
+    }
+  },
+  {
+    "name": "06 - GET produk baru",
+    "method": "GET",
+    "path": "/products/{{productId}}",
+    "status": 200,
+    "expected": {
+      "name": "Penghapus",
+      "price": 2000
+    }
+  },
+  {
+    "name": "07 - POST nama kosong",
+    "method": "POST",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "name": "   ",
+      "price": 2000
+    }
+  },
+  {
+    "name": "08 - POST harga negatif",
+    "method": "POST",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "name": "Penggaris",
+      "price": -100
+    }
+  },
+  {
+    "name": "09 - POST harga string",
+    "method": "POST",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "name": "Penggaris",
+      "price": "3000"
+    }
+  },
+  {
+    "name": "10 - POST field kurang",
+    "method": "POST",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "name": "Penggaris"
+    }
+  },
+  {
+    "name": "11 - POST JSON rusak",
+    "method": "POST",
+    "path": "/products",
+    "status": 400,
+    "raw": "{\"name\":"
+  },
+  {
+    "name": "12 - PUT produk berhasil",
+    "method": "PUT",
+    "path": "/products",
+    "status": 200,
+    "snapshot": "put",
+    "expected": {
+      "name": "Penghapus Premium",
+      "price": 3500
+    },
+    "body": {
+      "id": "{{productId}}",
+      "name": "Penghapus Premium",
+      "price": 3500
+    }
+  },
+  {
+    "name": "13 - GET hasil PUT",
+    "method": "GET",
+    "path": "/products/{{productId}}",
+    "status": 200,
+    "expected": {
+      "name": "Penghapus Premium",
+      "price": 3500
+    }
+  },
+  {
+    "name": "14 - PUT tanpa ID",
+    "method": "PUT",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "name": "Baru",
+      "price": 1000
+    }
+  },
+  {
+    "name": "15 - PUT ID string",
+    "method": "PUT",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "id": "1",
+      "name": "Baru",
+      "price": 1000
+    }
+  },
+  {
+    "name": "16 - PUT nama kosong",
+    "method": "PUT",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "id": "{{productId}}",
+      "name": "",
+      "price": 1000
+    }
+  },
+  {
+    "name": "17 - PUT harga negatif",
+    "method": "PUT",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "id": "{{productId}}",
+      "name": "Baru",
+      "price": -1
+    }
+  },
+  {
+    "name": "18 - PUT field harga kurang",
+    "method": "PUT",
+    "path": "/products",
+    "status": 400,
+    "body": {
+      "id": "{{productId}}",
+      "name": "Baru"
+    }
+  },
+  {
+    "name": "19 - PUT ID tidak ditemukan",
+    "method": "PUT",
+    "path": "/products",
+    "status": 404,
+    "body": {
+      "id": 2147483647,
+      "name": "Baru",
+      "price": 1000
+    }
+  },
+  {
+    "name": "20 - DELETE ID tidak valid",
+    "method": "DELETE",
+    "path": "/products/abc",
+    "status": 400
+  },
+  {
+    "name": "21 - DELETE ID tidak ditemukan",
+    "method": "DELETE",
+    "path": "/products/2147483647",
+    "status": 404
+  },
+  {
+    "name": "22 - DELETE produk berhasil",
+    "method": "DELETE",
+    "path": "/products/{{productId}}",
+    "status": 200,
+    "snapshot": "delete"
+  },
+  {
+    "name": "23 - GET produk setelah dihapus",
+    "method": "GET",
+    "path": "/products/{{productId}}",
+    "status": 404
+  },
+  {
+    "name": "24 - DELETE ulang produk",
+    "method": "DELETE",
+    "path": "/products/{{productId}}",
+    "status": 404
+  },
+  {
+    "name": "25 - POST harga nol valid",
+    "method": "POST",
+    "path": "/products",
+    "status": 201,
+    "capture": "freeProductId",
+    "expected": {
+      "name": "Sampel Gratis",
+      "price": 0
+    },
+    "body": {
+      "name": "Sampel Gratis",
+      "price": 0
+    }
+  },
+  {
+    "name": "26 - DELETE produk harga nol",
+    "method": "DELETE",
+    "path": "/products/{{freeProductId}}",
+    "status": 200
+  },
+  {
+    "name": "27 - GET daftar akhir",
+    "method": "GET",
+    "path": "/products",
+    "status": 200
+  },
+  {
+    "name": "28 - Endpoint tidak tersedia",
+    "method": "GET",
+    "path": "/tidak-ada",
+    "status": 404
+  }
+]

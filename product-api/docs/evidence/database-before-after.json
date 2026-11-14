@@ -1,0 +1,100 @@
+{
+  "post": {
+    "before": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      }
+    ],
+    "after": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Penghapus",
+        "price": 2000
+      }
+    ]
+  },
+  "put": {
+    "before": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Penghapus",
+        "price": 2000
+      }
+    ],
+    "after": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Penghapus Premium",
+        "price": 3500
+      }
+    ]
+  },
+  "delete": {
+    "before": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      },
+      {
+        "id": 3,
+        "name": "Penghapus Premium",
+        "price": 3500
+      }
+    ],
+    "after": [
+      {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      {
+        "id": 2,
+        "name": "Pulpen",
+        "price": 5000
+      }
+    ]
+  }
+}

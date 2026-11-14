@@ -1,0 +1,379 @@
+{
+  "executedAt": "2026-11-14T12:13:33.970Z",
+  "node": "v24.22.1",
+  "prisma": "6.19.0",
+  "total": 30,
+  "passed": 30,
+  "results": [
+    {
+      "name": "01 - GET seluruh produk",
+      "method": "GET",
+      "path": "/products",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "response": [
+        {
+          "id": 1,
+          "name": "Buku",
+          "price": 15000
+        },
+        {
+          "id": 2,
+          "name": "Pulpen",
+          "price": 5000
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "02 - GET produk Buku",
+      "method": "GET",
+      "path": "/products/1",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "response": {
+        "id": 1,
+        "name": "Buku",
+        "price": 15000
+      },
+      "passed": true
+    },
+    {
+      "name": "03 - GET ID tidak ditemukan",
+      "method": "GET",
+      "path": "/products/2147483647",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "response": {
+        "message": "Produk tidak ditemukan"
+      },
+      "passed": true
+    },
+    {
+      "name": "04 - GET ID tidak valid",
+      "method": "GET",
+      "path": "/products/abc",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "id harus integer positif yang valid"
+      },
+      "passed": true
+    },
+    {
+      "name": "05 - POST produk baru",
+      "method": "POST",
+      "path": "/products",
+      "requestBody": "{\"name\":\"  Penghapus  \",\"price\":2000}",
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "response": {
+        "id": 3,
+        "name": "Penghapus",
+        "price": 2000
+      },
+      "passed": true
+    },
+    {
+      "name": "06 - GET produk baru",
+      "method": "GET",
+      "path": "/products/3",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "response": {
+        "id": 3,
+        "name": "Penghapus",
+        "price": 2000
+      },
+      "passed": true
+    },
+    {
+      "name": "07 - POST nama kosong",
+      "method": "POST",
+      "path": "/products",
+      "requestBody": "{\"name\":\"   \",\"price\":2000}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+      },
+      "passed": true
+    },
+    {
+      "name": "08 - POST harga negatif",
+      "method": "POST",
+      "path": "/products",
+      "requestBody": "{\"name\":\"Penggaris\",\"price\":-100}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+      },
+      "passed": true
+    },
+    {
+      "name": "09 - POST harga string",
+      "method": "POST",
+      "path": "/products",
+      "requestBody": "{\"name\":\"Penggaris\",\"price\":\"3000\"}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+      },
+      "passed": true
+    },
+    {
+      "name": "10 - POST field kurang",
+      "method": "POST",
+      "path": "/products",
+      "requestBody": "{\"name\":\"Penggaris\"}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+      },
+      "passed": true
+    },
+    {
+      "name": "11 - POST JSON rusak",
+      "method": "POST",
+      "path": "/products",
+      "requestBody": "{\"name\":",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "Format JSON tidak valid"
+      },
+      "passed": true
+    },
+    {
+      "name": "12 - PUT produk berhasil",
+      "method": "PUT",
+      "path": "/products",
+      "requestBody": "{\"id\":3,\"name\":\"Penghapus Premium\",\"price\":3500}",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "response": {
+        "id": 3,
+        "name": "Penghapus Premium",
+        "price": 3500
+      },
+      "passed": true
+    },
+    {
+      "name": "Persistensi setelah restart proses server",
+      "passed": true
+    },
+    {
+      "name": "Seed ulang tidak mengubah data",
+      "passed": true
+    },
+    {
+      "name": "13 - GET hasil PUT",
+      "method": "GET",
+      "path": "/products/3",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "response": {
+        "id": 3,
+        "name": "Penghapus Premium",
+        "price": 3500
+      },
+      "passed": true
+    },
+    {
+      "name": "14 - PUT tanpa ID",
+      "method": "PUT",
+      "path": "/products",
+      "requestBody": "{\"name\":\"Baru\",\"price\":1000}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "id pada body harus integer positif yang valid"
+      },
+      "passed": true
+    },
+    {
+      "name": "15 - PUT ID string",
+      "method": "PUT",
+      "path": "/products",
+      "requestBody": "{\"id\":\"1\",\"name\":\"Baru\",\"price\":1000}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "id pada body harus integer positif yang valid"
+      },
+      "passed": true
+    },
+    {
+      "name": "16 - PUT nama kosong",
+      "method": "PUT",
+      "path": "/products",
+      "requestBody": "{\"id\":3,\"name\":\"\",\"price\":1000}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+      },
+      "passed": true
+    },
+    {
+      "name": "17 - PUT harga negatif",
+      "method": "PUT",
+      "path": "/products",
+      "requestBody": "{\"id\":3,\"name\":\"Baru\",\"price\":-1}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+      },
+      "passed": true
+    },
+    {
+      "name": "18 - PUT field harga kurang",
+      "method": "PUT",
+      "path": "/products",
+      "requestBody": "{\"id\":3,\"name\":\"Baru\"}",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "name (string tidak kosong) dan price (number >= 0) wajib diisi"
+      },
+      "passed": true
+    },
+    {
+      "name": "19 - PUT ID tidak ditemukan",
+      "method": "PUT",
+      "path": "/products",
+      "requestBody": "{\"id\":2147483647,\"name\":\"Baru\",\"price\":1000}",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "response": {
+        "message": "Produk tidak ditemukan"
+      },
+      "passed": true
+    },
+    {
+      "name": "20 - DELETE ID tidak valid",
+      "method": "DELETE",
+      "path": "/products/abc",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "response": {
+        "message": "id harus integer positif yang valid"
+      },
+      "passed": true
+    },
+    {
+      "name": "21 - DELETE ID tidak ditemukan",
+      "method": "DELETE",
+      "path": "/products/2147483647",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "response": {
+        "message": "Produk tidak ditemukan"
+      },
+      "passed": true
+    },
+    {
+      "name": "22 - DELETE produk berhasil",
+      "method": "DELETE",
+      "path": "/products/3",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "response": {
+        "message": "Produk berhasil dihapus",
+        "data": {
+          "id": 3,
+          "name": "Penghapus Premium",
+          "price": 3500
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "23 - GET produk setelah dihapus",
+      "method": "GET",
+      "path": "/products/3",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "response": {
+        "message": "Produk tidak ditemukan"
+      },
+      "passed": true
+    },
+    {
+      "name": "24 - DELETE ulang produk",
+      "method": "DELETE",
+      "path": "/products/3",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "response": {
+        "message": "Produk tidak ditemukan"
+      },
+      "passed": true
+    },
+    {
+      "name": "25 - POST harga nol valid",
+      "method": "POST",
+      "path": "/products",
+      "requestBody": "{\"name\":\"Sampel Gratis\",\"price\":0}",
+      "expectedStatus": 201,
+      "actualStatus": 201,
+      "response": {
+        "id": 4,
+        "name": "Sampel Gratis",
+        "price": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "26 - DELETE produk harga nol",
+      "method": "DELETE",
+      "path": "/products/4",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "response": {
+        "message": "Produk berhasil dihapus",
+        "data": {
+          "id": 4,
+          "name": "Sampel Gratis",
+          "price": 0
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "27 - GET daftar akhir",
+      "method": "GET",
+      "path": "/products",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "response": [
+        {
+          "id": 1,
+          "name": "Buku",
+          "price": 15000
+        },
+        {
+          "id": 2,
+          "name": "Pulpen",
+          "price": 5000
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "28 - Endpoint tidak tersedia",
+      "method": "GET",
+      "path": "/tidak-ada",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "response": {
+        "message": "Endpoint tidak ditemukan"
+      },
+      "passed": true
+    }
+  ]
+}
