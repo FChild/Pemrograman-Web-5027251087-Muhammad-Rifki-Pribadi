@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
-  // Automatic JSX runtime keeps components concise without a global React import.
+  plugins: [tailwindcss()],
   esbuild: { jsx: 'automatic' },
-  server: { proxy: { '/products': 'http://127.0.0.1:3000' } },
+  server: { proxy: { '/api': 'http://127.0.0.1:3000' } },
 });

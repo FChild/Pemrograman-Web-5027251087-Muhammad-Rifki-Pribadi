@@ -101,11 +101,11 @@ async function main() {
     }
   }
   assert.deepEqual(await all(), require('../data/products'));
-  const out = path.join(root, 'docs', 'evidence');
+  const out = path.join(root, 'docs', 'evidence', 'tugas-4');
   fs.mkdirSync(out, { recursive: true });
   fs.writeFileSync(path.join(out, 'automated-test-results.json'), JSON.stringify({ executedAt: new Date().toISOString(), node: process.version, prisma: require('@prisma/client/package.json').version, total: results.length, passed: results.length, results }, null, 2) + '\n');
   fs.writeFileSync(path.join(out, 'database-before-after.json'), JSON.stringify(snapshots, null, 2) + '\n');
-  console.log(`\n${results.length}/${results.length} pengujian lulus. Hasil tersimpan di docs/evidence/.`);
+  console.log(`\n${results.length}/${results.length} pengujian lulus. Hasil tersimpan di docs/evidence/tugas-4/.`);
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; }).finally(async () => {
   await stop();

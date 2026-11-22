@@ -6,9 +6,44 @@ const productRoutes = require('./routes/productRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
-app.use('/products', productRoutes);
-// Build React dilayani dari server yang sama; endpoint API tetap /products.
+
+// Endpoint API untuk frontend Tugas 4.
+app.use('/api/products', productRoutes);
+
+app.use('/api', (req, res) => {
+  res.status(404).json({ message: 'Endpoint API tidak ditemukan' });
+});
+
+// Tetap mendukung request JSON dari tugas sebelumnya.
+app.use('/products', (req, res, next) => {
+  const isHtml = (req.headers.accept || '').includes('text/html');
+
+  if (req.method === 'GET' && isHtml) {
+    return next();
+  }
+
+  return productRoutes(req, res, next);
+});
+
+// File hasil build React.
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
+
+// Mendukung refresh halaman detail, Settings, dan halaman 404.
+app.get('*', (req, res, next) => {
+  const isHtml = (req.headers.accept || '').includes('text/html');
+
+  if (!isHtml || path.extname(req.path)) {
+    return next();
+  }
+
+  res.sendFile(
+    path.join(__dirname, 'client', 'dist', 'index.html'),
+    (error) => {
+      if (error) next(error);
+    }
+  );
+});
+
 app.use((req, res) => res.status(404).json({ message: 'Endpoint tidak ditemukan' }));
 app.use((err, req, res, next) => {
   if (err.type === 'entity.parse.failed') {
