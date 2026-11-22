@@ -33,5 +33,11 @@
     "jsdom": "26.1.0",
     "playwright": "1.62.1",
     "prisma": "6.19.0"
+  },
+  "allowScripts": {
+    "@prisma/client@6.19.0": true,
+    "@prisma/engines@6.19.0": true,
+    "prisma@6.19.0": true,
+    "esbuild@0.25.12": true
   }
 }

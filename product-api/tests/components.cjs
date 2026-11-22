@@ -52,7 +52,7 @@ async function main() {
   const { render, screen, within, waitFor } = testing;
   cleanup = testing.cleanup;
   const user = require('@testing-library/user-event').default.setup();
-  const bundled = require('esbuild').buildSync({ entryPoints: [path.join(root, 'client/src/App.jsx')], bundle: true, platform: 'node', format: 'cjs', packages: 'external', jsx: 'automatic', write: false });
+  const bundled = require('esbuild').buildSync({ entryPoints: [path.join(root, 'client/src/App.jsx')], bundle: true, platform: 'node', format: 'cjs', external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'], jsx: 'automatic', write: false });
   const loaded = new Module(path.join(root, 'tests/App.bundle.cjs'));
   loaded.paths = Module._nodeModulePaths(root);
   loaded._compile(bundled.outputFiles[0].text, path.join(root, 'tests/App.bundle.cjs'));
@@ -61,6 +61,64 @@ async function main() {
   mount();
   await screen.findByRole('article', { name: 'Produk Buku' });
   assert.equal(screen.getAllByRole('article').length, 5); pass('GET: komponen menampilkan 5 produk dari API');
+  // Routing, detail ID, 404, settings, dan fallback server Tugas 4.
+  await user.click(screen.getByRole('link', { name: 'Buku', exact: true }));
+  await screen.findByRole('region', { name: 'Detail produk' });
+  assert.equal(screen.getByTestId('detail-id').textContent, '1');
+  pass('Detail Buku memuat ID 1 sesuai parameter URL');
+  await user.click(screen.getByRole('link', { name: /Kembali ke Produk/ }));
+  await screen.findByRole('article', { name: 'Produk Pulpen' });
+  await user.click(screen.getByRole('link', { name: 'Pulpen', exact: true }));
+  await screen.findByRole('region', { name: 'Detail produk' });
+  assert.equal(screen.getByTestId('detail-id').textContent, '2');
+  screen.getByRole('heading', { name: 'Pulpen', exact: true });
+  pass('Detail ID lain menampilkan produk yang berbeda');
+  cleanup(); window.history.pushState({}, '', '/products/2147483647'); mount();
+  await screen.findByRole('heading', { name: 'Produk tidak ditemukan' });
+  pass('ID tidak ditemukan menampilkan 404 produk');
+  cleanup(); window.history.pushState({}, '', '/products/abc'); mount();
+  await screen.findByRole('heading', { name: 'Produk tidak ditemukan' });
+  pass('ID non-numerik ditangani tanpa crash');
+  cleanup(); window.history.pushState({}, '', '/alamat-tidak-ada'); mount();
+  await screen.findByRole('heading', { name: 'Halaman tidak ditemukan' });
+  await user.click(screen.getByRole('link', { name: /Kembali ke Produk/ }));
+  await screen.findByRole('article', { name: 'Produk Buku' });
+  pass('404 route tidak dikenal memiliki Link kembali yang berfungsi');
+  await user.click(screen.getByRole('link', { name: 'Settings', exact: true }));
+  await user.click(screen.getByRole('radio', { name: /List/ }));
+  await user.click(screen.getByRole('link', { name: /Kembali ke Produk/ }));
+  await screen.findByRole('article', { name: 'Produk Buku' });
+  assert.equal(screen.getByRole('region', { name: 'Daftar produk' }).dataset.view, 'list');
+  pass('Settings List mengubah daftar produk menjadi list');
+  cleanup(); mount(); await screen.findByRole('article', { name: 'Produk Buku' });
+  assert.equal(screen.getByRole('region', { name: 'Daftar produk' }).dataset.view, 'list');
+  pass('Preferensi List tetap berlaku setelah komponen dimuat ulang');
+  await user.click(screen.getByRole('link', { name: 'Settings', exact: true }));
+  await user.click(screen.getByRole('radio', { name: /Grid/ }));
+  await user.click(screen.getByRole('link', { name: /Kembali ke Produk/ }));
+  await screen.findByRole('article', { name: 'Produk Buku' });
+  assert.equal(screen.getByRole('region', { name: 'Daftar produk' }).dataset.view, 'grid');
+  pass('Settings Grid mengembalikan tampilan kartu');
+  for (const route of ['/products/1', '/settings', '/route-tidak-ada']) {
+    const response = await realFetch(baseUrl + route, { headers: { Accept: 'text/html' } });
+    assert.equal(response.status, 200); assert.match(await response.text(), /<div id="root"><\/div>/);
+  }
+  pass('Direct URL dan refresh detail/Settings/404 memuat HTML React');
+  const api = await realFetch(baseUrl + '/api/products/2');
+  assert.equal((await api.json()).name, 'Pulpen');
+  const legacy = await realFetch(baseUrl + '/products/2');
+  assert.equal((await legacy.json()).name, 'Pulpen');
+  pass('API prefix baru dan endpoint JSON lama tetap kompatibel');
+  const missingApi = await realFetch(baseUrl + '/api/tidak-ada', { headers: { Accept: 'text/html' } });
+  assert.equal(missingApi.status, 404); assert.match(missingApi.headers.get('content-type'), /application\/json/);
+  pass('Endpoint API tak dikenal tidak tertukar dengan fallback HTML');
+
+  // Exercise existing CRUD handlers in List mode after verifying both layouts.
+  await user.click(screen.getByRole('link', { name: 'Settings', exact: true }));
+  await user.click(screen.getByRole('radio', { name: /List/ }));
+  await user.click(screen.getByRole('link', { name: /Kembali ke Produk/ }));
+  await screen.findByRole('article', { name: 'Produk Buku' });
+  assert.equal(screen.getByRole('region', { name: 'Daftar produk' }).dataset.view, 'list');
   const search = screen.getByRole('textbox', { name: 'Cari nama produk' });
   await user.type(search, '  pULpEn  ');
   assert.equal(screen.getAllByRole('article').length, 1); pass('Pencarian nama tidak peka huruf besar/kecil');
@@ -132,7 +190,8 @@ async function main() {
   await screen.findByRole('article', { name: 'Produk Buku' }); pass('Gagal memuat dapat dicoba ulang (simulasi respons)');
   await prisma.product.deleteMany(); cleanup(); mount();
   await screen.findByRole('heading', { name: 'Belum ada produk' }); pass('Database kosong menampilkan empty state');
-  const dir = path.join(root, 'docs/evidence');
+  const dir = path.join(root, 'docs/evidence/tugas-4');
+  fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'component-test-results.json'), JSON.stringify({ executedAt: new Date().toISOString(), environment: 'JSDOM + React Testing Library + Express HTTP + SQLite sementara', total: results.length, passed: results.length, results, limitations: 'Bukan browser visual; native dialog showModal/close dipolyfill. Screenshot, layout, focus trap, dan Escape browser belum diverifikasi.' }, null, 2)+'\n');
   fs.writeFileSync(path.join(dir, 'component-database-before-after.json'), JSON.stringify(snapshots,null,2)+'\n');
   console.log(`\n${results.length}/${results.length} pemeriksaan komponen lulus.`);

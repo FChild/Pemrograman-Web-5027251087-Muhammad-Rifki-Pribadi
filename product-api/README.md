@@ -159,3 +159,127 @@ Commit source code, `.env.example`, lockfile root/client, schema dan migration P
 - [React: responding to events](https://react.dev/learn/responding-to-events)
 - [Vite: getting started](https://vite.dev/guide/)
 - [GitHub: merging a pull request](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-a-pull-request)
+
+
+# Tugas 4 — Manajemen Produk dengan React Router dan Tailwind
+
+**Muhammad Rifki Pribadi · 5027251087**
+
+Lanjutan dari ZIP project Tugas 3 yang diunggah pengguna. CRUD Express/Prisma tetap dipakai. Penambahan utama: React Router, Tailwind, detail berdasarkan ID, halaman 404, dan Settings untuk mengganti grid/list.
+
+**Panduan utama:** [PANDUAN_TUGAS_4.md](docs/PANDUAN_TUGAS_4.md).
+**Draf deskripsi PR:** [PR_DESCRIPTION.md](PR_DESCRIPTION.md).
+**Hasil pengujian terbaru:** [LAPORAN_TUGAS_4.md](docs/LAPORAN_TUGAS_4.md).
+
+## Menjalankan
+
+Dari folder `product-api`:
+
+```powershell
+npm ci
+npm ci --prefix client
+if (!(Test-Path .env)) { Copy-Item .env.example .env }
+npm run db:generate
+npm run db:migrate
+npm run build
+npm start
+```
+
+Buka **http://localhost:3000/products**. Root `/` otomatis diarahkan ke daftar produk.
+
+Jika memulai dengan database kosong dan ingin data contoh, jalankan `npm run db:seed`. Tidak perlu seed ulang untuk melanjutkan data lama. Schema tidak berubah dan tidak ada perintah reset database dalam setup ini.
+
+Database dan `.env` dari ZIP pengguna dipertahankan dalam paket. Saat menyalin perubahan ke project yang sedang dipakai, pertahankan `.env` dan `prisma/dev.db` milikmu jika sudah lebih baru. File tersebut tetap diabaikan oleh Git. Screenshot Tugas 3 juga dipertahankan, tetapi bukan bukti fitur baru Tugas 4.
+
+## Halaman
+
+| URL browser | Perilaku |
+|---|---|
+| `/` | Redirect ke `/products` |
+| `/products` | Daftar, pencarian, tambah, edit, hapus, dan Link Detail |
+| `/products/1` | Data produk ID 1 dari API |
+| `/products/2` | Data produk ID 2 dari API |
+| `/products/2147483647` | Halaman produk tidak ditemukan jika ID tidak ada |
+| `/products/abc` | Halaman produk tidak ditemukan untuk ID tidak valid |
+| `/settings` | Radio Grid/List, diterapkan langsung |
+| Route lain, misalnya `/halaman-tidak-ada` | Halaman 404 dengan Link kembali |
+
+Settings disimpan dalam localStorage `product-management:view`. Pilihan tetap berlaku setelah refresh pada origin/browser yang sama. Jika penyimpanan browser tidak tersedia, preferensi masih berlaku selama sesi dan halaman Settings menampilkan pemberitahuan.
+
+## Pemisahan URL halaman dan API
+
+Sebelumnya `/products/:id` adalah endpoint JSON. Pada tugas ini URL tersebut juga diminta untuk halaman detail. API utama dipindahkan ke prefix **`/api/products`**, sementara request JSON lama tetap didukung.
+
+| Method | Endpoint utama | Kegunaan |
+|---|---|---|
+| GET | `/api/products` | Semua produk |
+| GET | `/api/products/:id` | Satu produk |
+| POST | `/api/products` | Tambah: body name dan price |
+| PUT | `/api/products` | Edit: body id, name, price |
+| DELETE | `/api/products/:id` | Hapus |
+
+Browser yang meminta HTML pada `/products/:id` menerima aplikasi React. Request API lama tanpa Accept HTML tetap menerima JSON. Untuk integrasi baru, gunakan `/api/products` agar tidak ambigu. Collection Postman lama masih dapat dipakai dengan header bawaannya; gunakan prefix `/api` jika mengatur `Accept: text/html` sendiri.
+
+Express menyediakan fallback HTML untuk deep link dan refresh. `/api/...` yang tidak ditemukan tetap menghasilkan JSON 404. Halaman 404 React pada aplikasi SPA menampilkan pesan 404 di UI; HTTP dokumen fallback tetap 200, sedangkan produk yang tidak ditemukan dari API menghasilkan HTTP 404.
+
+## Teknologi dan struktur
+
+- React Router DOM **7.9.6**: BrowserRouter, Routes, Route, Navigate, NavLink, Link, useParams.
+- Tailwind CSS dan plugin Vite **4.1.17**. Stylesheet mengimpor Tailwind; utility classes digunakan pada navigasi, layout grid/list, detail, Settings, dan 404.
+- CSS komponen lama diletakkan dalam layer `components` untuk mempertahankan tampilan form CRUD dan memungkinkan utility Tailwind mengubah layout.
+- React, Express, Prisma, dan SQLite melanjutkan versi project sebelumnya.
+
+| File | Fungsi |
+|---|---|
+| `client/src/App.jsx` | Navigasi dan definisi route |
+| `client/src/pages/ProductsPage.jsx` | CRUD lama dan tampilan grid/list |
+| `client/src/pages/ProductDetailPage.jsx` | useParams, GET berdasarkan ID, loading/error/not found |
+| `client/src/pages/SettingsPage.jsx` | Radio Grid/List |
+| `client/src/pages/NotFoundPage.jsx` | Pesan 404 dan Link kembali |
+| `client/src/context/SettingsContext.jsx` | State preferensi lintas halaman dan localStorage |
+| `client/src/components/ProductCard.jsx` | Link ke detail dan tombol CRUD |
+| `client/src/api.js` | Fetch `/api/products`, propagasi status error |
+| `client/vite.config.js` | Tailwind plugin dan proxy `/api` |
+| `app.js` | Routing API dan fallback HTML |
+
+## Mode pengembangan
+
+Terminal pertama: `npm run dev`. Terminal kedua: `npm run dev:ui`. Buka alamat Vite (biasanya http://localhost:5173). Proxy hanya meneruskan `/api` ke port 3000 agar `/products/:id` tetap diproses React Router. Untuk melihat hasil dari `npm start` setelah mengedit React, build ulang dengan `npm run build`.
+
+## Pengujian
+
+```powershell
+npm test
+npm run test:components
+```
+
+Hasil terbaru: **30 pemeriksaan API + 29 pemeriksaan komponen/routing lulus**. Database pengujian terpisah dari database pengguna. JSON hasil berada di `docs/evidence/tugas-4/`. File evidence di folder induk merupakan arsip Tugas 3.
+
+Test komponen berjalan dalam JSDOM dengan HTTP dan SQLite nyata; bukan pemeriksaan visual piksel. Untuk browser dan screenshot:
+
+```powershell
+npx playwright install chromium
+npm run build
+npm run test:ui
+```
+
+Skrip menyalakan server pengujian sendiri, menggunakan database sementara, dan menulis screenshot ke `docs/screenshots/tugas-4/`. Browser test belum berhasil dijalankan di lingkungan pembuatan karena Chromium diblokir. Jangan mengklaim sudah lulus sebelum menjalankannya. Alternatifnya, ikuti pengujian manual dalam panduan.
+
+## Jika npm memblokir install scripts
+
+Izin spesifik yang ada pada ZIP pengguna tetap dipertahankan. Bila npm tetap menampilkan paket diblokir, jalankan:
+
+```powershell
+npm install-scripts approve "@prisma/client" "@prisma/engines" prisma esbuild
+npm rebuild "@prisma/client" "@prisma/engines" prisma esbuild
+npm install-scripts approve esbuild --prefix client
+npm rebuild esbuild --prefix client
+```
+
+## Pengumpulan
+
+Gunakan branch **tugas-4**, beberapa commit terfokus, PR **main ← tugas-4**, lalu **Rebase and merge**. Kumpulkan URL PR melalui Google Form dosen. Jangan membuat PR dari main ke tugas-4. Source dalam ZIP tidak berisi folder `.git`; gunakan repository GitHub milikmu yang sudah ada.
+
+Paket belum melakukan push, membuat PR, merge, atau mengirim Form. Panduan Tugas 3 disimpan sebagai arsip; ikuti panduan Tugas 4 untuk pengumpulan sekarang.
+
+Referensi: [React Router](https://reactrouter.com/start/declarative/routing), [Tailwind + Vite](https://tailwindcss.com/docs/installation/using-vite).
